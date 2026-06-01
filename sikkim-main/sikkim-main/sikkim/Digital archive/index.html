@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Monasteries Digital Archive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">Sikkim Monasteries Digital Archive</h1>
+            <p class="header__subtitle">Preserving the Sacred Heritage of Sikkim Buddhism</p>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <div class="nav__tabs">
+                <button class="nav__tab nav__tab--active" data-tab="history">History</button>
+                <button class="nav__tab" data-tab="database">Monastery Database</button>
+                <button class="nav__tab" data-tab="repository">Manuscripts & Murals Repository</button>
+                <button class="nav__tab" data-tab="ai-summary">AI Summary Generator</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main container">
+        <!-- History Section -->
+        <section id="history" class="section section--active">
+            <div class="section__header">
+                <h2>History of Sikkim Monasteries</h2>
+            </div>
+            
+            <div class="history-content">
+                <article class="history-article">
+                    <h3>Origins and Early Development</h3>
+                    <p>The earliest monasteries in Sikkim were simple structures, often built in remote, secluded locations by followers of Tibetan Buddhism. Over time, as Buddhism flourished in Sikkim, the monasteries grew in size and complexity, incorporating elements of local architecture.</p>
+                    
+                    <p>The establishment of monasteries in Sikkim began in the 17th century, with Dubdi Monastery (1647) being the oldest. This period marked the formal introduction of Tibetan Buddhism to the region, establishing Sikkim as a significant center of Buddhist learning and culture.</p>
+                </article>
+
+                <article class="history-article">
+                    <h3>Architectural Heritage</h3>
+                    <p>Sikkim's monastery architecture is heavily influenced by Tibetan Buddhism, featuring rammed earth walls, sloping roofs designed for heavy snowfall, intricate wood carvings, and vibrant murals depicting Buddhist mythology, prayer wheels, and mani walls.</p>
+                    
+                    <p>The architectural elements serve both functional and spiritual purposes. The sloping roofs handle the region's heavy monsoons and snowfall, while the colorful facades and intricate carvings create sacred spaces that inspire meditation and devotion.</p>
+                </article>
+
+                <article class="history-article">
+                    <h3>Cultural and Religious Significance</h3>
+                    <p>These monasteries serve as centers of learning, art, and community, housing valuable collections of ancient manuscripts, thangkas, and religious artifacts while contributing to cultural preservation and tourism.</p>
+                    
+                    <p>Beyond their religious function, Sikkim's monasteries have played crucial roles in preserving Tibetan Buddhist culture, providing education, and serving as community centers that maintain the social fabric of Buddhist communities in the region.</p>
+                </article>
+
+                <div class="timeline">
+                    <h3>Key Milestones</h3>
+                    <div class="timeline__items">
+                        <div class="timeline__item">
+                            <div class="timeline__year">1641</div>
+                            <div class="timeline__content">
+                                <strong>Tashiding Monastery Founded</strong>
+                                <p>Establishment of one of Sikkim's most sacred monasteries</p>
+                            </div>
+                        </div>
+                        <div class="timeline__item">
+                            <div class="timeline__year">1647</div>
+                            <div class="timeline__content">
+                                <strong>Dubdi Monastery Established</strong>
+                                <p>The oldest monastery in Sikkim, marking the formal beginning of Buddhism in the region</p>
+                            </div>
+                        </div>
+                        <div class="timeline__item">
+                            <div class="timeline__year">1705</div>
+                            <div class="timeline__content">
+                                <strong>Pemayangtse Monastery Built</strong>
+                                <p>Construction of the historic monastery known for its intricate artwork</p>
+                            </div>
+                        </div>
+                        <div class="timeline__item">
+                            <div class="timeline__year">1909</div>
+                            <div class="timeline__content">
+                                <strong>Enchey Monastery Founded</strong>
+                                <p>Establishment of the monastery attributed to Padmasambhava</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Database Section -->
+        <section id="database" class="section">
+            <div class="section__header">
+                <h2>Monastery Database</h2>
+                <div class="search-controls">
+                    <input type="text" id="searchInput" class="form-control search-input" placeholder="Search monasteries...">
+                    <select id="filterSelect" class="form-control filter-select">
+                        <option value="">All Monasteries</option>
+                        <option value="17th">17th Century</option>
+                        <option value="18th">18th Century</option>
+                        <option value="20th">20th Century</option>
+                        <option value="gangtok">Gangtok Area</option>
+                        <option value="west-sikkim">West Sikkim</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="monasteryGrid" class="monastery-grid">
+                <!-- Monastery cards will be dynamically populated here -->
+            </div>
+        </section>
+
+        <!-- Manuscripts & Murals Repository Section -->
+        <section id="repository" class="section">
+            <div class="section__header">
+                <h2>Manuscripts & Murals Repository</h2>
+                <p class="section__description">Comprehensive digital archive of sacred texts, artistic treasures, and cultural artifacts</p>
+                
+                <div class="repository-controls">
+                    <input type="text" id="repositorySearchInput" class="form-control search-input" placeholder="Search manuscripts and murals...">
+                    <select id="typeFilter" class="form-control filter-select">
+                        <option value="">All Types</option>
+                        <option value="Manuscript">Manuscripts</option>
+                        <option value="Mural">Murals</option>
+                        <option value="Thangka">Thangkas</option>
+                        <option value="Architectural Art">Architectural Art</option>
+                    </select>
+                    <select id="centuryFilter" class="form-control filter-select">
+                        <option value="">All Centuries</option>
+                        <option value="17th">17th Century</option>
+                        <option value="18th">18th Century</option>
+                        <option value="19th">19th Century</option>
+                        <option value="20th">20th Century</option>
+                    </select>
+                    <select id="languageFilter" class="form-control filter-select">
+                        <option value="">All Languages</option>
+                        <option value="Classical Tibetan">Tibetan</option>
+                        <option value="Lepcha">Lepcha</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="repository-stats">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalItems">10</div>
+                        <div class="stat-label">Total Items</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="manuscriptCount">5</div>
+                        <div class="stat-label">Manuscripts</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="muralCount">5</div>
+                        <div class="stat-label">Artworks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="digitizedCount">5</div>
+                        <div class="stat-label">Fully Digitized</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="repositoryGrid" class="repository-grid">
+                <!-- Repository items will be dynamically populated here -->
+            </div>
+        </section>
+
+        <!-- AI Summary Section -->
+        <section id="ai-summary" class="section">
+            <div class="section__header">
+                <h2>AI Summary Generator</h2>
+                <p class="section__description">Generate concise summaries of monastery information using intelligent text processing</p>
+            </div>
+
+            <div class="ai-summary-container">
+                <div class="input-section">
+                    <label for="inputText" class="form-label">Enter monastery information to summarize:</label>
+                    <textarea 
+                        id="inputText" 
+                        class="form-control summary-textarea" 
+                        placeholder="Paste or type detailed information about a monastery here. The AI will generate a concise summary highlighting the key points..."
+                        rows="8"></textarea>
+                    
+                    <div class="ai-controls">
+                        <button id="generateSummary" class="btn btn--primary">Generate Summary</button>
+                        <button id="clearText" class="btn btn--secondary">Clear Text</button>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <label class="form-label">Generated Summary:</label>
+                    <div id="summaryOutput" class="summary-output">
+                        <p class="summary-placeholder">Your AI-generated summary will appear here...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Sikkim Monasteries Digital Archive. Preserving Buddhist Heritage for Future Generations.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

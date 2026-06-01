@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Monasteries - Immersive Virtual Tours</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Loading Virtual Tour</h2>
+            <p>Preparing your spiritual journey...</p>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="main-app hidden">
+        <!-- Header -->
+        <header class="tour-header">
+            <div class="header-content">
+                <h1 class="header-title">Sikkim Monasteries</h1>
+                <p class="header-subtitle">Immersive Virtual Tours</p>
+                <button id="backToSelection" class="btn btn--secondary btn--sm hidden">
+                    ← Back to Monasteries
+                </button>
+            </div>
+        </header>
+
+        <!-- Monastery Selection Screen -->
+        <section id="monasterySelection" class="monastery-selection">
+            <div class="container">
+                <div class="selection-header">
+                    <h2>Choose Your Spiritual Journey</h2>
+                    <p>Explore the sacred monasteries of Sikkim through immersive 360° virtual tours</p>
+                </div>
+
+                <div class="monastery-cards">
+                    <!-- Monastery cards will be populated by JavaScript -->
+                </div>
+
+                <div class="tour-features">
+                    <div class="feature">
+                        <div class="feature-icon">🎧</div>
+                        <h3>Audio Narration</h3>
+                        <p>Expert guided commentary in multiple languages</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">360°</div>
+                        <h3>360° Views</h3>
+                        <p>Immersive panoramic exploration</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📍</div>
+                        <h3>Interactive Hotspots</h3>
+                        <p>Discover detailed information about sacred elements</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Virtual Tour Viewer -->
+        <section id="tourViewer" class="tour-viewer hidden">
+            <!-- Tour Controls -->
+            <div class="tour-controls">
+                <div class="control-group">
+                    <button id="zoomIn" class="control-btn" title="Zoom In">🔍+</button>
+                    <button id="zoomOut" class="control-btn" title="Zoom Out">🔍-</button>
+                    <button id="resetView" class="control-btn" title="Reset View">⌂</button>
+                </div>
+                
+                <div class="viewpoint-selector">
+                    <select id="viewpointSelect" class="form-control">
+                        <option value="">Select Viewpoint</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <button id="toggleFullscreen" class="control-btn" title="Fullscreen">⛶</button>
+                    <button id="toggleVR" class="control-btn" title="VR Mode">🥽</button>
+                </div>
+            </div>
+
+            <!-- Panorama Container -->
+            <div id="panoramaContainer" class="panorama-container">
+                <div id="panoramaImage" class="panorama-image">
+                    <!-- Hotspots will be dynamically added here -->
+                </div>
+                
+                <!-- Navigation Instructions -->
+                <div class="navigation-hint">
+                    <p>🖱️ Drag to look around • 📱 Touch and drag on mobile</p>
+                </div>
+            </div>
+
+            <!-- Audio Controls -->
+            <div class="audio-controls">
+                <div class="audio-player">
+                    <button id="playPauseBtn" class="audio-btn audio-btn--play">▶️</button>
+                    
+                    <div class="audio-timeline">
+                        <div class="timeline-track">
+                            <div id="audioProgress" class="timeline-progress"></div>
+                            <input type="range" id="audioScrubber" class="timeline-scrubber" min="0" max="100" value="0">
+                        </div>
+                        <div class="timeline-time">
+                            <span id="currentTime">0:00</span> / 
+                            <span id="totalTime">0:00</span>
+                        </div>
+                    </div>
+
+                    <div class="audio-settings">
+                        <select id="languageSelect" class="form-control audio-select">
+                            <option value="english">English</option>
+                            <option value="hindi">हिंदी</option>
+                            <option value="nepali">नेपाली</option>
+                        </select>
+                        
+                        <select id="speedSelect" class="form-control audio-select">
+                            <option value="0.75">0.75x</option>
+                            <option value="1" selected>1x</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                        </select>
+
+                        <div class="volume-control">
+                            <span>🔊</span>
+                            <input type="range" id="volumeSlider" min="0" max="100" value="70">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="audio-info">
+                    <h3 id="currentViewpoint">Main Entrance Gate</h3>
+                    <p id="audioDescription">Traditional Tibetan gateway with colorful prayer flags</p>
+                </div>
+            </div>
+
+            <!-- Information Hotspot Modal -->
+            <div id="hotspotModal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="hotspotTitle">Information</h3>
+                        <button id="closeModal" class="modal-close">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="hotspotDescription"></p>
+                        <div id="hotspotDetails"></div>
+                    </div>
+                </div>
+                <div class="modal-backdrop"></div>
+            </div>
+        </section>
+
+        <!-- Mini Map -->
+        <div id="miniMap" class="mini-map hidden">
+            <div class="mini-map-content">
+                <h4>Current Location</h4>
+                <div class="map-monastery">
+                    <div id="currentLocationDot" class="location-dot"></div>
+                    <span id="currentMonasteryName">Rumtek Monastery</span>
+                </div>
+                <div class="viewpoint-dots">
+                    <!-- Viewpoint indicators will be added dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tutorial Modal -->
+        <div id="tutorialModal" class="modal tutorial-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Welcome to Virtual Tours</h3>
+                    <button id="closeTutorial" class="modal-close">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="tutorial-steps">
+                        <div class="tutorial-step">
+                            <div class="step-icon">🖱️</div>
+                            <h4>Navigate the View</h4>
+                            <p>Drag with your mouse or finger to look around in 360°</p>
+                        </div>
+                        <div class="tutorial-step">
+                            <div class="step-icon">📍</div>
+                            <h4>Explore Hotspots</h4>
+                            <p>Click on glowing markers to learn about sacred elements</p>
+                        </div>
+                        <div class="tutorial-step">
+                            <div class="step-icon">🎧</div>
+                            <h4>Listen to Audio</h4>
+                            <p>Enjoy narrated guides as you explore each viewpoint</p>
+                        </div>
+                        <div class="tutorial-step">
+                            <div class="step-icon">🔄</div>
+                            <h4>Change Viewpoints</h4>
+                            <p>Use the dropdown to visit different areas of the monastery</p>
+                        </div>
+                    </div>
+                    <button id="startTour" class="btn btn--primary btn--lg">Start Your Journey</button>
+                </div>
+            </div>
+            <div class="modal-backdrop"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

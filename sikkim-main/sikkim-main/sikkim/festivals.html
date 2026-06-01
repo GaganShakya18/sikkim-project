@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional Festivals - Sikkim</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero-background">
+        <img src="download (2).jpeg" alt="Traditional Festivals">
+        <div class="hero-overlay">
+            <button class="back-btn" onclick="window.location.href='culture.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>Traditional Festivals</h1>
+            <p>Sacred Celebrations of Sikkim</p>
+        </div>
+    </div>
+
+    <div class="festivals-content">
+        <div class="festival-item">
+            <img src="download (2).jpeg" alt="Losar Festival">
+            <div class="festival-info">
+                <h2>Losar (Tibetan New Year)</h2>
+                <div class="festival-details">
+                    <h3>Importance</h3>
+                    <p>Losar marks the beginning of the Tibetan calendar year and is the most significant festival for the Buddhist community in Sikkim. It symbolizes renewal, purification, and the triumph of good over evil.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Dating back over 2,000 years, Losar originated from the Bon religion before being adopted by Tibetan Buddhism. The festival was brought to Sikkim by Tibetan settlers and has been celebrated for centuries, blending ancient traditions with local customs.</p>
+                    
+                    <button class="calendar-btn" onclick="showCalendar('losar')"><i class="fas fa-calendar-alt"></i> Cultural Calendar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="festival-item">
+            <img src="Hemis-Festival, Ladakh.jpeg" alt="Saga Dawa">
+            <div class="festival-info">
+                <h2>Saga Dawa</h2>
+                <div class="festival-details">
+                    <h3>Importance</h3>
+                    <p>Saga Dawa commemorates Buddha's birth, enlightenment, and death (Parinirvana). It's considered the holiest month in the Buddhist calendar, when merit from good deeds is multiplied exponentially.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>This festival has its roots in ancient Buddhist traditions from the 6th century BCE. In Sikkim, it gained prominence with the establishment of Buddhism as the state religion in the 17th century under the Chogyal dynasty.</p>
+                    
+                    <button class="calendar-btn" onclick="showCalendar('sagadawa')"><i class="fas fa-calendar-alt"></i> Cultural Calendar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="festival-item">
+            <img src="Making of the Prayer Wheel - Sikkim, India.jpeg" alt="Dashain Festival">
+            <div class="festival-info">
+                <h2>Dashain</h2>
+                <div class="festival-details">
+                    <h3>Importance</h3>
+                    <p>Dashain celebrates the victory of Goddess Durga over the demon Mahishasura, symbolizing the triumph of good over evil. It's the most important Hindu festival in Sikkim, bringing families together in celebration.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Originating from ancient Hindu scriptures, Dashain was brought to Sikkim by Nepali settlers in the 19th century. The festival has since become deeply integrated into Sikkimese culture, celebrated by people of all communities.</p>
+                    
+                    <button class="calendar-btn" onclick="showCalendar('dashain')"><i class="fas fa-calendar-alt"></i> Cultural Calendar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="festival-item">
+            <img src="Lepcha traditional house.jpeg" alt="Bumchu Festival">
+            <div class="festival-info">
+                <h2>Bumchu</h2>
+                <div class="festival-details">
+                    <h3>Importance</h3>
+                    <p>Bumchu is a sacred water ceremony held at Tashiding Monastery, believed to predict the coming year's fortune for Sikkim. The holy water is considered to have miraculous healing properties.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Established in the 17th century by Lama Lhatsun Chempo, this unique festival is specific to Sikkim. Legend says the water level in the sacred pot indicates the year's prosperity, making it deeply significant for the state's well-being.</p>
+                    
+                    <button class="calendar-btn" onclick="showCalendar('bumchu')"><i class="fas fa-calendar-alt"></i> Cultural Calendar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-overlay h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-overlay p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .festivals-content {
+            position: relative;
+            z-index: 2;
+            margin-top: 100vh;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            padding: 60px 40px;
+            border-radius: 30px 30px 0 0;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            box-shadow: 0 -20px 60px rgba(6, 182, 212, 0.2);
+        }
+
+        .festival-item {
+            display: flex;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .festival-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .festival-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .festival-item img {
+            width: 350px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .festival-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        .festival-info {
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .festival-info h2 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(6, 182, 212, 0.3);
+            font-weight: 700;
+        }
+
+        .festival-details h3 {
+            font-size: 1.4rem;
+            color: #06b6d4;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            font-weight: 600;
+        }
+
+        .festival-details h3:first-child {
+            margin-top: 0;
+        }
+
+        .festival-details p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(30, 41, 59, 0.9);
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .calendar-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .calendar-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .calendar-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .calendar-header {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 20px 30px 10px;
+            border-radius: 15px 15px 0 0;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+            z-index: 10001;
+        }
+
+        .calendar-body {
+            padding: 20px 30px 30px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .calendar-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(239, 68, 68, 0.9);
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10002;
+        }
+
+        .calendar-close:hover {
+            background: rgba(239, 68, 68, 1);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .calendar-content h3 {
+            color: #f59e0b;
+            margin: 0 40px 0 0;
+            text-align: center;
+        }
+
+        .calendar-info {
+            margin-bottom: 20px;
+        }
+
+        .calendar-info h4 {
+            color: #06b6d4;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .calendar-info p {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .location-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .location-list li {
+            margin-bottom: 12px;
+            color: #555;
+            line-height: 1.6;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+        }
+
+        .location-list li:last-child {
+            border-bottom: none;
+        }
+
+        .location-name {
+            font-weight: 600;
+            color: #06b6d4;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .location-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .location-contact {
+            color: #059669;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .festival-item {
+                flex-direction: column !important;
+            }
+            .festival-item img {
+                width: 100%;
+                height: 250px;
+            }
+            .hero-overlay h1 {
+                font-size: 2.5rem;
+            }
+            .festival-info {
+                padding: 20px;
+            }
+            .calendar-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        const festivalCalendars = {
+            losar: {
+                name: 'Losar (Tibetan New Year)',
+                dates: 'February/March (varies by lunar calendar)',
+                duration: '15 days',
+                locations: [
+                    'Rumtek Monastery - Main celebrations with traditional dances. Contact: +91-3592-252575',
+                    'Gangtok Tourism Office - City-wide festivities and cultural programs. Contact: +91-3592-202590',
+                    'Pemayangtse Monastery - Sacred rituals and prayers. Contact: +91-3595-250263',
+                    'Tashiding Monastery - Holy water ceremony. Contact: +91-3595-241355',
+                    'Enchey Monastery - Traditional mask dances. Contact: +91-3592-223637'
+                ]
+            },
+            sagadawa: {
+                name: 'Saga Dawa',
+                dates: 'May/June (4th month of Tibetan calendar)',
+                duration: '1 month (especially auspicious on full moon day)',
+                locations: [
+                    'Tashiding Monastery - Most sacred celebration site with grand ceremonies and prayers. Contact: +91-3595-241355',
+                    'Rumtek Monastery - Grand ceremonies with traditional rituals. Contact: +91-3592-252575',
+                    'Pemayangtse Monastery - Traditional rituals and sacred prayers. Contact: +91-3595-250263',
+                    'Gangtok Tourism - Prayer flag hoisting ceremonies throughout the city. Contact: +91-3592-202590',
+                    'Khecheopalri Lake - Sacred pilgrimage site for offerings and prayers. Guide: +91-9832456789'
+                ]
+            },
+            dashain: {
+                name: 'Dashain',
+                dates: 'September/October (15 days during bright fortnight)',
+                duration: '15 days',
+                locations: [
+                    'Gangtok Cultural Center - Main celebration hub with cultural events and festivities. Contact: +91-3592-202590',
+                    'Namchi Tourism Office - Traditional festivities and fairs throughout the region. Contact: +91-3595-264296',
+                    'Jorethang Community Hall - Community celebrations with local cultural programs. Contact: +91-3595-263456',
+                    'Singtam Cultural Committee - Local cultural programs and traditional events. Contact: +91-3592-263789',
+                    'Mangan Tourism - North Sikkim celebrations with regional festivities. Contact: +91-3592-234567'
+                ]
+            },
+            bumchu: {
+                name: 'Bumchu',
+                dates: 'January/February (14th-15th day of 1st Tibetan month)',
+                duration: '2 days',
+                locations: [
+                    'Tashiding Monastery - Primary and most sacred venue for the holy water ceremony. Contact: +91-3595-241355',
+                    'Yuksom Tourism Office - Pilgrimage routes and temporary camps information. Contact: +91-3595-241200',
+                    'West Sikkim Tourism - Complete ceremony details and related events. Contact: +91-3595-250750'
+                ]
+            }
+        };
+
+        function showCalendar(festival) {
+            const modal = document.getElementById('calendar-modal');
+            const data = festivalCalendars[festival];
+            
+            document.getElementById('calendar-title').textContent = data.name;
+            document.getElementById('calendar-dates').textContent = data.dates;
+            document.getElementById('calendar-duration').textContent = data.duration;
+            
+            const locationsList = document.getElementById('calendar-locations');
+            locationsList.innerHTML = '';
+            data.locations.forEach(location => {
+                const li = document.createElement('li');
+                const parts = location.split('. Contact: ');
+                const mainText = parts[0];
+                const contact = parts[1];
+                
+                const nameParts = mainText.split(' - ');
+                const name = nameParts[0];
+                const description = nameParts[1];
+                
+                li.innerHTML = `
+                    <span class="location-name">${name}</span>
+                    <div class="location-description">${description}</div>
+                    <div class="location-contact">📞 ${contact}</div>
+                `;
+                locationsList.appendChild(li);
+            });
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeCalendar() {
+            document.getElementById('calendar-modal').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const festivalItems = document.querySelectorAll('.festival-item');
+            festivalItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+
+    <div id="calendar-modal" class="calendar-modal">
+        <div class="calendar-content">
+            <div class="calendar-header">
+                <button class="calendar-close" onclick="closeCalendar()">&times;</button>
+                <h3 id="calendar-title">Festival Calendar</h3>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-info">
+                    <h4>Celebration Period</h4>
+                    <p id="calendar-dates"></p>
+                </div>
+                
+                <div class="calendar-info">
+                    <h4>Duration</h4>
+                    <p id="calendar-duration"></p>
+                </div>
+                
+                <div class="calendar-info">
+                    <h4>Best Places to Experience</h4>
+                    <div class="location-list">
+                        <ul id="calendar-locations"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

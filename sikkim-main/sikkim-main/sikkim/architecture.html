@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional Architecture - Sikkim</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero-background">
+        <img src="Lepcha traditional house.jpeg" alt="Traditional Architecture">
+        <div class="hero-overlay">
+            <button class="back-btn" onclick="window.location.href='culture.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>Traditional Architecture</h1>
+            <p>Built Heritage of Sikkim</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="item">
+            <img src="Lepcha traditional house.jpeg" alt="Lepcha Houses">
+            <div class="info">
+                <h2>Lepcha Traditional Houses</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Lepcha houses represent the indigenous architectural wisdom of Sikkim's original inhabitants. Built on stilts with bamboo and wood, these structures are perfectly adapted to the mountainous terrain and monsoon climate, showcasing sustainable building practices.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Developed over thousands of years by the Lepcha people, these houses evolved from their deep understanding of local materials and climate. The elevated design protects against floods and wild animals, while the use of bamboo and timber reflects their harmonious relationship with nature.</p>
+                    
+                    <button class="see-more-btn" onclick="showArchitectureGallery('lepcha')"><i class="fas fa-camera"></i> See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="Making of the Prayer Wheel - Sikkim, India.jpeg" alt="Monastery Architecture">
+            <div class="info">
+                <h2>Buddhist Monasteries</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Sikkimese monasteries are architectural marvels that serve as centers of spiritual learning and community gathering. Their distinctive pagoda-style roofs, colorful facades, and intricate woodwork create sacred spaces that inspire meditation and devotion.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Monastery architecture in Sikkim began in the 17th century with the arrival of Tibetan Buddhism. Influenced by Tibetan and Chinese architectural styles, these structures were adapted to local conditions, incorporating earthquake-resistant techniques and local materials.</p>
+                    
+                    <button class="see-more-btn" onclick="showArchitectureGallery('monastery')"><i class="fas fa-camera"></i> See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="download (2).jpeg" alt="Bhutia Houses">
+            <div class="info">
+                <h2>Bhutia Traditional Houses</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Bhutia houses reflect the Tibetan architectural influence in Sikkim, featuring flat roofs, thick stone walls, and prayer flag poles. These structures are designed for high-altitude living and serve as symbols of cultural identity and family heritage.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Brought by Tibetan settlers in the 13th-14th centuries, Bhutia architecture adapted Tibetan building techniques to Sikkim's environment. The use of local stone, timber, and traditional construction methods has been preserved through generations of skilled craftsmen.</p>
+                    
+                    <button class="see-more-btn" onclick="showArchitectureGallery('bhutia')"><i class="fas fa-camera"></i> See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="Hemis-Festival, Ladakh.jpeg" alt="Nepali Architecture">
+            <div class="info">
+                <h2>Nepali Traditional Houses</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Nepali houses in Sikkim showcase the architectural diversity brought by Nepali settlers. Featuring sloped roofs, carved wooden windows, and courtyards, these homes reflect the rich building traditions of the Himalayan region.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Introduced during the 19th-century Nepali migration to Sikkim, this architectural style combines elements from the Kathmandu Valley with local adaptations. The intricate woodwork and traditional construction techniques have been maintained by generations of Nepali craftsmen.</p>
+                    
+                    <button class="see-more-btn" onclick="showArchitectureGallery('nepali')"><i class="fas fa-camera"></i> See More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; overflow-x: hidden; }
+        .hero-background { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; }
+        .hero-background img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+        .back-btn { position: absolute; top: 30px; left: 30px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 18px; backdrop-filter: blur(10px); }
+        .hero-overlay h1 { font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .hero-overlay p { font-size: 1.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+        .content { position: relative; z-index: 2; margin-top: 100vh; background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%); backdrop-filter: blur(30px) saturate(180%); padding: 60px 40px; border-radius: 30px 30px 0 0; border: 1px solid rgba(6, 182, 212, 0.2); box-shadow: 0 -20px 60px rgba(6, 182, 212, 0.2); }
+        .item { display: flex; margin-bottom: 80px; opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
+        .item.visible { opacity: 1; transform: translateY(0); }
+        .item:nth-child(even) { flex-direction: row-reverse; }
+        .item img { width: 350px; height: 400px; object-fit: cover; border-radius: 15px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; }
+        .item:hover img { transform: scale(1.05); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5); }
+        .info { padding: 40px; flex: 1; display: flex; flex-direction: column; }
+        .info h2 { font-size: 2.5rem; color: #1e293b; margin-bottom: 30px; text-shadow: 3px 3px 6px rgba(6, 182, 212, 0.3); font-weight: 700; }
+        .details h3 { font-size: 1.4rem; color: #06b6d4; margin-bottom: 15px; margin-top: 25px; font-weight: 600; }
+        .details h3:first-child { margin-top: 0; }
+        .details p { font-size: 1.1rem; line-height: 1.7; color: rgba(30, 41, 59, 0.9); text-align: justify; margin-bottom: 20px; }
+        .see-more-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .see-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .architecture-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .architecture-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+
+        .architecture-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .architecture-content h3 {
+            color: #10b981;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .architecture-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .architecture-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .architecture-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .visit-info-section {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+        }
+
+        .visit-info-section h4 {
+            color: #10b981;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .visit-location {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .visit-location h5 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .timing-info {
+            background: #10b981;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .activity-list {
+            margin-top: 10px;
+        }
+
+        .activity-list li {
+            color: #666;
+            margin-bottom: 5px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .activity-list li:before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .location-address {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) { 
+            .item { flex-direction: column !important; } 
+            .item img { width: 100%; height: 250px; } 
+            .hero-overlay h1 { font-size: 2.5rem; } 
+            .info { padding: 20px; }
+            .architecture-content { width: 95%; padding: 20px; }
+            .architecture-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        }
+    </style>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+        const architectureGalleries = {
+            lepcha: {
+                name: 'Lepcha Traditional Houses Gallery',
+                images: [
+                    'Lepcha traditional house.jpeg',
+                    'download (2).jpeg',
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg',
+                    'Hemis-Festival, Ladakh.jpeg'
+                ],
+                locations: [
+                    {
+                        name: 'Dzongu Lepcha Reserve',
+                        timing: 'Daily: 8 AM - 6 PM',
+                        address: 'Dzongu, North Sikkim | Permit required from Mangan',
+                        activities: [
+                            'Visit authentic Lepcha houses on stilts',
+                            'Learn about traditional bamboo construction',
+                            'Interact with Lepcha families',
+                            'Photography of traditional architecture',
+                            'Understand earthquake-resistant design'
+                        ]
+                    },
+                    {
+                        name: 'Yuksom Heritage Village',
+                        timing: 'Daily: 9 AM - 5 PM',
+                        address: 'Yuksom, West Sikkim | 40 km from Pelling',
+                        activities: [
+                            'Explore preserved Lepcha houses',
+                            'Guided tours with local historians',
+                            'Traditional house construction workshops',
+                            'Cultural storytelling sessions',
+                            'Homestay in traditional houses'
+                        ]
+                    },
+                    {
+                        name: 'Kalimpong Lepcha Museum',
+                        timing: 'Tue-Sun: 10 AM - 4 PM',
+                        address: 'Kalimpong, WB | 2 hrs from Gangtok',
+                        activities: [
+                            'View architectural models and exhibits',
+                            'Learn construction techniques',
+                            'Documentary screenings',
+                            'Interactive displays',
+                            'Purchase architectural books'
+                        ]
+                    }
+                ]
+            },
+            monastery: {
+                name: 'Buddhist Monasteries Gallery',
+                images: [
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg',
+                    'Hemis-Festival, Ladakh.jpeg',
+                    'download (2).jpeg',
+                    'Lepcha traditional house.jpeg'
+                ],
+                locations: [
+                    {
+                        name: 'Rumtek Monastery',
+                        timing: 'Daily: 6 AM - 6 PM',
+                        address: 'Rumtek, East Sikkim | 24 km from Gangtok',
+                        activities: [
+                            'Admire traditional Tibetan architecture',
+                            'Study intricate woodwork and carvings',
+                            'Observe prayer wheel mechanisms',
+                            'Photography of pagoda-style roofs',
+                            'Attend morning and evening prayers'
+                        ]
+                    },
+                    {
+                        name: 'Pemayangtse Monastery',
+                        timing: 'Daily: 7 AM - 5 PM',
+                        address: 'Pemayangtse, West Sikkim | 2 km from Pelling',
+                        activities: [
+                            'Explore 300-year-old architecture',
+                            'View ancient construction techniques',
+                            'Study earthquake-resistant design',
+                            'Guided architectural tours',
+                            'Meditation in traditional halls'
+                        ]
+                    },
+                    {
+                        name: 'Tashiding Monastery',
+                        timing: 'Daily: 6 AM - 7 PM',
+                        address: 'Tashiding, West Sikkim | 40 km from Yuksom',
+                        activities: [
+                            'Sacred architecture pilgrimage',
+                            'Study hilltop monastery design',
+                            'Traditional stone and wood construction',
+                            'Panoramic valley views',
+                            'Spiritual architecture experience'
+                        ]
+                    }
+                ]
+            },
+            bhutia: {
+                name: 'Bhutia Traditional Houses Gallery',
+                images: [
+                    'download (2).jpeg',
+                    'Lepcha traditional house.jpeg',
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg',
+                    'Hemis-Festival, Ladakh.jpeg'
+                ],
+                locations: [
+                    {
+                        name: 'Lachung Village',
+                        timing: 'Daily: 8 AM - 6 PM',
+                        address: 'Lachung Valley, North Sikkim | 118 km via Chungthang',
+                        activities: [
+                            'Visit traditional Bhutia houses',
+                            'Learn about flat-roof architecture',
+                            'Study high-altitude construction',
+                            'Interact with Bhutia families',
+                            'Photography of stone and timber work'
+                        ]
+                    },
+                    {
+                        name: 'Lachen Village',
+                        timing: 'Daily: 8 AM - 6 PM',
+                        address: 'Lachen Valley, North Sikkim | 125 km via Chungthang',
+                        activities: [
+                            'Explore authentic Bhutia architecture',
+                            'Understand prayer flag installations',
+                            'Traditional heating systems',
+                            'Village walking tours',
+                            'Cultural exchange programs'
+                        ]
+                    },
+                    {
+                        name: 'Thangu Valley',
+                        timing: 'May-Oct: 9 AM - 5 PM',
+                        address: 'Thangu Valley, North Sikkim | 150 km from Gangtok',
+                        activities: [
+                            'Remote Bhutia settlements',
+                            'Traditional yak herder houses',
+                            'High-altitude architecture study',
+                            'Nomadic lifestyle observation',
+                            'Extreme weather construction techniques'
+                        ]
+                    }
+                ]
+            },
+            nepali: {
+                name: 'Nepali Traditional Houses Gallery',
+                images: [
+                    'Hemis-Festival, Ladakh.jpeg',
+                    'download (2).jpeg',
+                    'Lepcha traditional house.jpeg',
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg'
+                ],
+                locations: [
+                    {
+                        name: 'Jorethang Town',
+                        timing: 'Daily: 9 AM - 6 PM',
+                        address: 'Jorethang, South Sikkim | 65 km via Singtam',
+                        activities: [
+                            'Explore Nepali architectural heritage',
+                            'Study carved wooden windows',
+                            'Traditional courtyard designs',
+                            'Local craftsman workshops',
+                            'Heritage walking tours'
+                        ]
+                    },
+                    {
+                        name: 'Namchi Cultural Center',
+                        timing: 'Daily: 10 AM - 5 PM',
+                        address: 'Namchi, South Sikkim | 78 km via Singtam',
+                        activities: [
+                            'Nepali architecture exhibitions',
+                            'Traditional construction demonstrations',
+                            'Woodcarving workshops',
+                            'Cultural architecture tours',
+                            'Artisan interaction sessions'
+                        ]
+                    },
+                    {
+                        name: 'Singtam Heritage Area',
+                        timing: 'Daily: 8 AM - 6 PM',
+                        address: 'Singtam, East Sikkim | 31 km from Gangtok',
+                        activities: [
+                            'Historic Nepali settlements',
+                            'Traditional sloped-roof houses',
+                            'Kathmandu Valley influence study',
+                            'Local family interactions',
+                            'Photography and documentation'
+                        ]
+                    }
+                ]
+            }
+        };
+
+        function showArchitectureGallery(archType) {
+            const modal = document.getElementById('architecture-modal');
+            const data = architectureGalleries[archType];
+            
+            document.getElementById('architecture-title').textContent = data.name;
+            
+            const architectureGrid = document.getElementById('architecture-grid');
+            architectureGrid.innerHTML = '';
+            data.images.forEach(image => {
+                const div = document.createElement('div');
+                div.className = 'architecture-item';
+                div.innerHTML = `<img src="${image}" alt="${data.name}">`;
+                architectureGrid.appendChild(div);
+            });
+            
+            const locationsList = document.getElementById('architecture-locations');
+            locationsList.innerHTML = '';
+            data.locations.forEach(location => {
+                const div = document.createElement('div');
+                div.className = 'visit-location';
+                div.innerHTML = `
+                    <h5>${location.name}</h5>
+                    <div class="timing-info">⏰ ${location.timing}</div>
+                    <div class="location-address">📍 ${location.address}</div>
+                    <div class="activity-list">
+                        <strong>What to do:</strong>
+                        <ul>
+                            ${location.activities.map(activity => `<li>${activity}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                locationsList.appendChild(div);
+            });
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeArchitectureGallery() {
+            document.getElementById('architecture-modal').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.item').forEach(item => observer.observe(item));
+        });
+    </script>
+
+    <div id="architecture-modal" class="architecture-modal">
+        <div class="architecture-content">
+            <button class="architecture-close" onclick="closeArchitectureGallery()">&times;</button>
+            <h3 id="architecture-title">Architecture Gallery</h3>
+            
+            <div class="architecture-grid" id="architecture-grid"></div>
+            
+            <div class="visit-info-section">
+                <h4>Where to Visit & What to Do</h4>
+                <div id="architecture-locations"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

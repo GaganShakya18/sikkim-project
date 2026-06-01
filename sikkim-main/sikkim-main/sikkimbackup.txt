@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Monasteries - Wanderlust</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
+</head>
+<body>
+
+    <!-- Floating Controls -->
+    <div class="floating-controls">
+        <button id="language-toggle" class="floating-btn" title="Translate Page"><i class="fas fa-language"></i></button>
+        <div class="language-dropdown">
+            <div data-lang="en">English</div>
+            <div data-lang="zh">中文</div>
+            <div data-lang="hi">हिन्दी</div>
+            <div data-lang="es">Español</div>
+            <div data-lang="ar">العربية</div>
+            <div data-lang="pt">Português</div>
+            <div data-lang="bn">বাংলা</div>
+            <div data-lang="ru">Русский</div>
+            <div data-lang="ja">日本語</div>
+            <div data-lang="fr">Français</div>
+            <div data-lang="ur">اردو</div>
+            <div data-lang="de">Deutsch</div>
+            <div data-lang="ko">한국어</div>
+            <div data-lang="vi">Tiếng Việt</div>
+            <div data-lang="tr">Türkçe</div>
+            <div data-lang="it">Italiano</div>
+            <div data-lang="th">ไทย</div>
+            <div data-lang="pl">Polski</div>
+            <div data-lang="nl">Nederlands</div>
+            <div data-lang="uk">Українська</div>
+            <div data-lang="fa">فارسی</div>
+            <div data-lang="sw">Kiswahili</div>
+            <div data-lang="ta">தமிழ்</div>
+            <div data-lang="te">తెలుగు</div>
+            <div data-lang="mr">मराठी</div>
+            <div data-lang="gu">ગુજરાતી</div>
+            <div data-lang="kn">ಕನ್ನಡ</div>
+            <div data-lang="ml">മലയാളം</div>
+            <div data-lang="pa">ਪੰਜਾਬੀ</div>
+            <div data-lang="ne">नेपाली</div>
+            <div data-lang="si">සිංහල</div>
+            <div data-lang="my">မြန်မာ</div>
+            <div data-lang="km">ខ្មែរ</div>
+            <div data-lang="lo">ລາວ</div>
+            <div data-lang="ka">ქართული</div>
+            <div data-lang="hy">Հայերեն</div>
+            <div data-lang="he">עברית</div>
+            <div data-lang="sv">Svenska</div>
+            <div data-lang="no">Norsk</div>
+            <div data-lang="da">Dansk</div>
+            <div data-lang="fi">Suomi</div>
+            <div data-lang="cs">Čeština</div>
+            <div data-lang="hu">Magyar</div>
+            <div data-lang="ro">Română</div>
+            <div data-lang="bg">Български</div>
+            <div data-lang="hr">Hrvatski</div>
+            <div data-lang="sk">Slovenčina</div>
+            <div data-lang="sl">Slovenščina</div>
+            <div data-lang="et">Eesti</div>
+            <div data-lang="lv">Latviešu</div>
+            <div data-lang="lt">Lietuvių</div>
+            <div data-lang="mk">Македонски</div>
+            <div data-lang="sq">Shqip</div>
+            <div data-lang="sr">Српски</div>
+            <div data-lang="bs">Bosanski</div>
+            <div data-lang="mt">Malti</div>
+            <div data-lang="is">Íslenska</div>
+            <div data-lang="ga">Gaeilge</div>
+            <div data-lang="cy">Cymraeg</div>
+            <div data-lang="eu">Euskera</div>
+            <div data-lang="ca">Català</div>
+            <div data-lang="gl">Galego</div>
+            <div data-lang="af">Afrikaans</div>
+            <div data-lang="zu">isiZulu</div>
+            <div data-lang="xh">isiXhosa</div>
+            <div data-lang="yo">Yoruba</div>
+            <div data-lang="ig">Igbo</div>
+            <div data-lang="ha">Hausa</div>
+            <div data-lang="am">አማርኛ</div>
+            <div data-lang="so">Soomaali</div>
+            <div data-lang="ms">Bahasa Melayu</div>
+            <div data-lang="id">Bahasa Indonesia</div>
+            <div data-lang="tl">Filipino</div>
+            <div data-lang="haw">ʻŌlelo Hawaiʻi</div>
+            <div data-lang="mg">Malagasy</div>
+            <div data-lang="sm">Gagana Samoa</div>
+            <div data-lang="to">Lea Faka-Tonga</div>
+            <div data-lang="fj">Na Vosa Vakaviti</div>
+            <div data-lang="mi">Te Reo Māori</div>
+            <div data-lang="az">Azərbaycan</div>
+            <div data-lang="kk">Қазақ</div>
+            <div data-lang="ky">Кыргыз</div>
+            <div data-lang="uz">O'zbek</div>
+            <div data-lang="tg">Тоҷикӣ</div>
+            <div data-lang="mn">Монгол</div>
+            <div data-lang="ps">پښتو</div>
+            <div data-lang="sd">سنڌي</div>
+            <div data-lang="be">Беларуская</div>
+            <div data-lang="el">Ελληνικά</div>
+            <div data-lang="la">Latina</div>
+            <div data-lang="eo">Esperanto</div>
+        </div>
+    </div>
+
+
+
+
+    <section class="hero-container">
+        <div id="hero-slideshow" class="hero-slideshow">
+            <img src="_Summer Magic in Sikkim_ Lush Valleys & Himalayan Vibes _ (1).jpeg" alt="Hero Image 1" class="hero-slide active">
+            <img src="Gangtok, Sikkim.jpeg" class="hero-slide">
+            <img src="Gangtok.jpeg" alt="Hero Image 3" class="hero-slide">
+        </div>
+        
+        <div class="hero-image-overlay">
+            <h1 class="hero-title" data-key="hero-title"><span class="hero-discover"></span> Sikkim Monasteries</h1>
+            <p class="hero-subtitle" data-key="hero-text">Explore the spiritual sanctuaries of Sikkim, nestled in the serene Himalayas. Discover ancient wisdom and breathtaking views.</p>
+        </div>
+        
+        <div class="slideshow-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+    </section>
+
+    <section id="monasteries" class="monastery-collage">
+        <div class="container">
+            <h2 class="section-title" data-key="section-title">Sacred Sanctuaries of Sikkim</h2>
+            <div class="monastery-grid">
+                <div class="monastery-card-small monasteries-main-card" onclick="navigateWithAnimation('monasteries.html')">
+                    <div class="card-image-container">
+                        <img src="sikkim collage.jpg" alt="All Monasteries">
+                        <div class="card-overlay">
+                            <h3 data-key="monasteries-title">Monasteries <i class="fas fa-chevron-right"></i></h3>
+                            <p data-key="monasteries-text">Visit many monasteries in Sikkim</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="monastery-card-small food-main-card" onclick="window.location.href='food.html'">
+                    <div class="card-image-container">
+                        <img src="Sikkim thali.jpeg" alt="Sikkim Food">
+                        <div class="card-overlay">
+                            <h3 data-key="food-title">Food & Cuisine <i class="fas fa-chevron-right"></i></h3>
+                            <p data-key="food-text">Taste authentic Sikkimese flavors</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="monastery-card-small trekking-main-card" onclick="window.location.href='trekking.html'">
+                    <div class="card-image-container">
+                        <img src="download.jpeg" alt="Sikkim Trekking">
+                        <div class="card-overlay">
+                            <h3 data-key="trekking-title">Trekking <i class="fas fa-chevron-right"></i></h3>
+                            <p data-key="trekking-text">Adventure through Himalayan trails</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="monastery-card-small culture-main-card" onclick="window.location.href='culture.html'">
+                    <div class="card-image-container">
+                        <img src="download (1).jpeg" alt="Culture & Heritage">
+                        <div class="card-overlay">
+                            <h3 data-key="culture-title">Culture & Heritage <i class="fas fa-chevron-right"></i></h3>
+                            <p data-key="culture-text">Rich traditions and heritage</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="trip-planner-section">
+            <h2 class="section-title">Plan Your Perfect Trip</h2>
+            <div class="planner-grid">
+                <div class="planner-card">
+                    <div class="planner-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Duration</h3>
+                    <select class="planner-select">
+                        <option>3-5 Days</option>
+                        <option>1 Week</option>
+                        <option>2 Weeks</option>
+                        <option>1 Month</option>
+                    </select>
+                </div>
+
+                <div class="planner-card">
+                    <div class="planner-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Group Size</h3>
+                    <select class="planner-select">
+                        <option>Solo</option>
+                        <option>Couple</option>
+                        <option>Family</option>
+                        <option>Group (5+)</option>
+                    </select>
+                </div>
+
+                <div class="planner-card">
+                    <div class="planner-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Interests</h3>
+                    <select class="planner-select">
+                        <option>Spiritual</option>
+                        <option>Adventure</option>
+                        <option>Cultural</option>
+                        <option>Photography</option>
+                    </select>
+                </div>
+
+                <div class="planner-card">
+                    <div class="planner-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Budget</h3>
+                    <select class="planner-select">
+                        <option>Budget</option>
+                        <option>Mid-range</option>
+                        <option>Luxury</option>
+                        <option>Premium</option>
+                    </select>
+                </div>
+            </div>
+            <button class="generate-plan-btn">
+                <i class="fas fa-route"></i>
+                Generate My Itinerary
+            </button>
+        </div>
+        
+        <div class="rules-section">
+            <h2 class="section-title">Travel Guidelines & Regulations</h2>
+            <div class="rules-content">
+                <div class="rule-item">
+                    <div class="rule-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="rule-info">
+                        <h3>Entry Permits</h3>
+                        <p>Inner Line Permit (ILP) required for Indian citizens. Protected Area Permit (PAP) needed for restricted areas. Carry valid ID proof at all times.</p>
+                    </div>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="rule-info">
+                        <h3>Environmental Protection</h3>
+                        <p>No plastic bags allowed. Maintain cleanliness in monasteries and trekking areas. Follow Leave No Trace principles. Respect wildlife and natural habitats.</p>
+                    </div>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-icon">
+                        <i class="fas fa-pray"></i>
+                    </div>
+                    <div class="rule-info">
+                        <h3>Monastery Etiquette</h3>
+                        <p>Remove shoes before entering. Dress modestly. No photography inside prayer halls without permission. Maintain silence during prayers and ceremonies.</p>
+                    </div>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="rule-info">
+                        <h3>Trekking Safety</h3>
+                        <p>Hire certified guides for high-altitude treks. Carry proper gear and first aid. Inform authorities about trekking plans. Check weather conditions before departure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </section>
+
+    <style>
+        .trip-planner-section {
+            margin: 60px 0;
+            padding: 40px 0;
+        }
+
+        .planner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .planner-card {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.05));
+            backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .planner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        .planner-icon {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(6, 182, 212, 0.2));
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: #06b6d4;
+            font-size: 1.5rem;
+        }
+
+        .planner-card h3 {
+            color: #06b6d4;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .planner-select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 8px;
+            color: #1e293b;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .planner-select:focus {
+            outline: none;
+            border-color: #06b6d4;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+        }
+
+        .generate-plan-btn {
+            display: block;
+            margin: 40px auto 0;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .generate-plan-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+        }
+
+        .generate-plan-btn i {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .planner-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .planner-card {
+                padding: 25px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .planner-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .rules-section {
+            margin-top: 60px;
+            padding: 40px 0;
+        }
+
+        .rules-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.05));
+            backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .rule-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        .rule-icon {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(6, 182, 212, 0.2));
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #06b6d4;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .rule-info h3 {
+            color: #06b6d4;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .rule-info p {
+            color: rgba(30, 41, 59, 0.9);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .rules-content {
+                grid-template-columns: 1fr;
+            }
+            .rule-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <button id="help-button" class="floating-action-btn help-btn"><i class="fas fa-headphones"></i></button>
+    <button id="camera-translate-btn" class="floating-action-btn camera-btn"><i class="fas fa-camera"></i></button>
+
+    <style>
+        .floating-action-btn {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .help-btn {
+            bottom: 30px !important;
+            right: 30px !important;
+            background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
+            color: white !important;
+            z-index: 9999 !important;
+        }
+
+        .camera-btn {
+            top: 30px;
+            right: 100px;
+            background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
+            color: white !important;
+            border: 2px solid rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4) !important;
+        }
+
+        .floating-action-btn:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .floating-action-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            .help-btn {
+                bottom: 20px;
+                right: 20px;
+            }
+            .camera-btn {
+                bottom: 80px;
+                right: 20px;
+            }
+        }
+    </style>
+
+    <div id="help-modal" class="help-modal">
+        <div class="elegant-modal-content">
+            <div class="modal-header">
+                <div class="ai-avatar">
+                    <i class="fas fa-robot"></i>
+                    <div class="pulse-ring"></div>
+                </div>
+                <h2>Sikkim AI Assistant</h2>
+                <span class="close-button">&times;</span>
+            </div>
+            
+            <div class="conversation-area">
+                <div class="ai-message">
+                    <div class="message-bubble">
+                        <p id="assistant-response">Hello! I'm your Sikkim tourism guide. Ask me anything about monasteries, food, trekking, or travel planning.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="elegant-input-area">
+                <div class="input-container">
+                    <textarea id="user-input-text" placeholder="Ask me about Sikkim tourism..."></textarea>
+                    <div class="control-buttons">
+                        <button id="listen-button" class="voice-btn">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button id="mute-button" class="audio-btn">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <button id="send-button" class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .help-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .elegant-modal-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            border-radius: 25px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(6, 182, 212, 0.3), 0 0 60px rgba(6, 182, 212, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .elegant-modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), transparent 50%, rgba(6, 182, 212, 0.03));
+            border-radius: 25px;
+            pointer-events: none;
+        }
+
+        .modal-header {
+            padding: 30px 25px 25px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(6, 182, 212, 0.03));
+            backdrop-filter: blur(20px);
+        }
+
+        .ai-avatar {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4), inset 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .pulse-ring {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border: 3px solid rgba(6, 182, 212, 0.6);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+
+        .modal-header h2 {
+            color: #06b6d4;
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-button:hover {
+            color: #06b6d4;
+            background: rgba(6, 182, 212, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .conversation-area {
+            padding: 25px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .ai-message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .message-bubble {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(6, 182, 212, 0.08));
+            backdrop-filter: blur(15px) saturate(150%);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 20px 20px 20px 6px;
+            padding: 18px 22px;
+            max-width: 100%;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .message-bubble p {
+            margin: 0;
+            color: #1e293b;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .elegant-input-area {
+            padding: 25px;
+            border-top: 1px solid rgba(6, 182, 212, 0.3);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(6, 182, 212, 0.02));
+            backdrop-filter: blur(20px);
+        }
+
+        .input-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 250, 252, 0.6));
+            backdrop-filter: blur(20px) saturate(150%);
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            border-radius: 30px;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .input-container:focus-within {
+            border-color: #06b6d4;
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5), 0 10px 40px rgba(6, 182, 212, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        #user-input-text {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #1e293b;
+            font-size: 0.95rem;
+            resize: none;
+            min-height: 20px;
+        }
+
+        #user-input-text::placeholder {
+            color: rgba(30, 41, 59, 0.5);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .voice-btn, .audio-btn, .send-btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .voice-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .voice-btn:hover {
+            transform: scale(1.15) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .audio-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.15) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.15) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+    </style>
+
+    <div id="camera-modal" class="camera-modal">
+        <div class="premium-camera-content">
+            <div class="camera-header">
+                <div class="camera-title-section">
+                    <div class="camera-icon-wrapper">
+                        <i class="fas fa-camera-retro"></i>
+                        <div class="scan-animation"></div>
+                    </div>
+                    <div class="title-text">
+                        <h2>Smart Camera Translator</h2>
+                        <p>Instant text recognition & translation</p>
+                    </div>
+                </div>
+                <span class="camera-close-btn">&times;</span>
+            </div>
+
+            <div class="camera-main-area">
+                <div class="camera-section">
+                    <div class="camera-viewport">
+                        <video id="camera-video" autoplay playsinline></video>
+                        <canvas id="camera-canvas" style="display: none;"></canvas>
+                        <div class="camera-overlay">
+                            <div class="camera-corners">
+                                <div class="corner top-left"></div>
+                                <div class="corner top-right"></div>
+                                <div class="corner bottom-left"></div>
+                                <div class="corner bottom-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="camera-controls">
+                        <button id="switch-camera-btn" class="control-btn switch-btn">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Switch</span>
+                        </button>
+                        <button id="capture-btn" class="control-btn capture-btn">
+                            <i class="fas fa-camera"></i>
+                            <span>Capture</span>
+                        </button>
+                        <button id="upload-btn" class="control-btn upload-btn">
+                            <i class="fas fa-upload"></i>
+                            <span>Upload</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="translation-section">
+                    <div class="language-selector">
+                        <label>Translate to:</label>
+                        <select id="target-language" class="language-select">
+                            <option value="hi">Hindi</option>
+                            <option value="ne">Nepali</option>
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                            <option value="ja">Japanese</option>
+                            <option value="ko">Korean</option>
+                            <option value="zh">Chinese</option>
+                        </select>
+                    </div>
+
+                    <div class="text-results">
+                        <div class="result-card detected-card">
+                            <div class="card-header">
+                                <i class="fas fa-eye"></i>
+                                <h4>Detected Text</h4>
+                            </div>
+                            <div class="card-content">
+                                <p id="detected-text-content">Point camera at text and capture...</p>
+                            </div>
+                        </div>
+
+                        <div class="result-card translated-card">
+                            <div class="card-header">
+                                <i class="fas fa-language"></i>
+                                <h4>Translation</h4>
+                                <button id="translation-speaker" class="speaker-btn">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-content">
+                                <p id="translated-text-content">Translation will appear here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="file" id="file-input" accept="image/*" style="display: none;">
+    </div>
+
+    <style>
+        .camera-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .camera-modal.show {
+            opacity: 1;
+        }
+
+        .premium-camera-content {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.85));
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border: 2px solid rgba(251, 191, 36, 0.4);
+            border-radius: 25px;
+            width: 95%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(251, 191, 36, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+
+        .premium-camera-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.05), transparent 50%, rgba(251, 191, 36, 0.03));
+            border-radius: 25px;
+            pointer-events: none;
+        }
+
+        .camera-modal.show .premium-camera-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .camera-header {
+            padding: 30px;
+            border-bottom: 2px solid rgba(251, 191, 36, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(251, 191, 36, 0.03));
+            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .camera-title-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .camera-icon-wrapper {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e293b;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4), inset 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .scan-animation {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border: 3px solid rgba(251, 191, 36, 0.6);
+            border-radius: 50%;
+            animation: scan-pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+
+        @keyframes scan-pulse {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        .title-text h2 {
+            color: #fbbf24;
+            font-size: 1.6rem;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        .title-text p {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .camera-close-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(239, 68, 68, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(239, 68, 68, 0.4);
+            border-radius: 50%;
+            color: #ef4444;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .camera-close-btn:hover {
+            background: rgba(239, 68, 68, 0.3);
+            transform: rotate(90deg) scale(1.15) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .camera-main-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+            min-height: 500px;
+        }
+
+        .camera-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .camera-viewport {
+            position: relative;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            border: 2px solid rgba(251, 191, 36, 0.6);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(251, 191, 36, 0.2), inset 0 2px 10px rgba(255, 255, 255, 0.1);
+            transform: perspective(1000px) rotateX(2deg);
+        }
+
+        #camera-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 23px;
+            filter: contrast(1.1) brightness(1.05);
+        }
+
+        .camera-viewport::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.05), transparent 40%, rgba(251, 191, 36, 0.03));
+            border-radius: 23px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .camera-viewport::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            border-radius: 23px;
+            pointer-events: none;
+            z-index: 2;
+            box-shadow: inset 0 0 15px rgba(251, 191, 36, 0.1);
+        }
+
+        .camera-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 3;
+        }
+
+        .scan-line {
+            position: absolute;
+            width: calc(100% - 30px);
+            height: 2px;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: elegantScan 3s ease-in-out infinite;
+            border-radius: 2px;
+        }
+
+        .scan-line.yellow {
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.8), rgba(251, 191, 36, 1), rgba(251, 191, 36, 0.8), transparent);
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.6), 0 0 30px rgba(251, 191, 36, 0.3);
+            animation-delay: 0s;
+        }
+
+        .scan-line.green {
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.8), rgba(16, 185, 129, 1), rgba(16, 185, 129, 0.8), transparent);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.6), 0 0 30px rgba(16, 185, 129, 0.3);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes elegantScan {
+            0% { top: 25%; opacity: 0; transform: translateY(-50%) scaleX(0.3); }
+            25% { opacity: 1; transform: translateY(-50%) scaleX(1); }
+            75% { opacity: 1; transform: translateY(-50%) scaleX(1); }
+            100% { top: 75%; opacity: 0; transform: translateY(-50%) scaleX(0.3); }
+        }
+
+        .camera-corners {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(251, 191, 36, 0.8);
+            animation: cornerPulse 2s ease-in-out infinite;
+        }
+
+        .corner.top-left {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 8px 0 0 0;
+        }
+
+        .corner.top-right {
+            top: 0;
+            right: 0;
+            border-left: none;
+            border-bottom: none;
+            border-radius: 0 8px 0 0;
+        }
+
+        .corner.bottom-left {
+            bottom: 0;
+            left: 0;
+            border-right: none;
+            border-top: none;
+            border-radius: 0 0 0 8px;
+        }
+
+        .corner.bottom-right {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 8px 0;
+        }
+
+        @keyframes cornerPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+
+
+        .scan-instruction {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .camera-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .control-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .switch-btn {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+
+        .capture-btn {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1e293b;
+            padding: 15px 25px;
+            font-size: 1rem;
+        }
+
+        .upload-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .control-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .translation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .language-selector {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(15, 23, 42, 0.3));
+            backdrop-filter: blur(20px) saturate(150%);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .language-selector label {
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .language-select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            border-radius: 10px;
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .text-results {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(251, 191, 36, 0.08));
+            backdrop-filter: blur(15px) saturate(150%);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            flex: 1;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(15, 23, 42, 0.3));
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .card-header i {
+            color: #fbbf24;
+            font-size: 1.1rem;
+        }
+
+        .card-header h4 {
+            color: #fbbf24;
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .speaker-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .speaker-btn:hover {
+            transform: scale(1.15) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .card-content {
+            padding: 20px;
+            min-height: 80px;
+        }
+
+        .card-content p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .premium-camera-content {
+                width: 98%;
+                max-height: 95vh;
+            }
+
+            .camera-main-area {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .camera-header {
+                padding: 20px;
+            }
+
+            .camera-title-section {
+                gap: 15px;
+            }
+
+            .camera-icon-wrapper {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .title-text h2 {
+                font-size: 1.3rem;
+            }
+
+            .camera-controls {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .control-btn {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+
+    <div id="monastery-modal" class="monastery-modal">
+        <div class="modal-close-btn">&times;</div>
+        <div class="modal-container">
+            <div class="modal-image-container">
+                <div class="modal-slideshow">
+                    <img class="modal-slide active" src="" alt="">
+                    <img class="modal-slide" src="" alt="">
+                    <img class="modal-slide" src="" alt="">
+                    <img class="modal-slide" src="" alt="">
+                    <img class="modal-slide" src="" alt="">
+                </div>
+                <div class="slideshow-nav">
+                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="modal-slideshow-dots">
+                    <span class="modal-dot active" data-slide="0"></span>
+                    <span class="modal-dot" data-slide="1"></span>
+                    <span class="modal-dot" data-slide="2"></span>
+                    <span class="modal-dot" data-slide="3"></span>
+                    <span class="modal-dot" data-slide="4"></span>
+                </div>
+            </div>
+            <div class="modal-content-container">
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                
+                <div class="modal-features">
+                    <div class="feature-buttons">
+                        <button class="feature-btn" id="maps-btn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Maps</span>
+                        </button>
+                        <button class="feature-btn" id="virtual-tour-btn">
+                            <i class="fas fa-vr-cardboard"></i>
+                            <span>Virtual Tour</span>
+                        </button>
+                        <button class="feature-btn" id="audio-guide-btn">
+                            <i class="fas fa-headphones"></i>
+                            <span>Audio Guide</span>
+                        </button>
+                        <button class="feature-btn" id="hotels-btn">
+                            <i class="fas fa-bed"></i>
+                            <span>Hotels</span>
+                        </button>
+                    </div>
+                    
+                    <div class="feature-content" id="feature-content">
+                        <div class="feature-panel" id="maps-panel">
+                            <h3>Location & Directions</h3>
+                            <div class="map-placeholder">
+                                <i class="fas fa-map"></i>
+                                <p>Interactive map showing monastery location and nearby attractions</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-panel" id="virtual-tour-panel">
+                            <h3>360° Virtual Experience</h3>
+                            <div class="tour-placeholder">
+                                <i class="fas fa-street-view"></i>
+                                <p>Immersive virtual tour of the monastery interior and grounds</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-panel" id="audio-guide-panel">
+                            <h3>Audio Commentary</h3>
+                            <div class="audio-controls">
+                                <button class="audio-play-btn"><i class="fas fa-play"></i></button>
+                                <div class="audio-info">
+                                    <p>Detailed audio guide with history and cultural significance</p>
+                                    <div class="audio-duration">Duration: 8:30</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-panel" id="hotels-panel">
+                            <h3>Nearby Accommodations</h3>
+                            <div class="hotel-list">
+                                <div class="hotel-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>Mountain View Resort - 2.5km</span>
+                                </div>
+                                <div class="hotel-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>Himalayan Lodge - 3.8km</span>
+                                </div>
+                                <div class="hotel-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>Sacred Valley Hotel - 5.2km</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>n.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Travel Planner - Personal Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="travel-planner.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-mountain"></i>
+                Sikkim Wanderlust
+            </a>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="monasteries.html"><i class="fas fa-place-of-worship"></i> Monasteries</a>
+                <a href="trekking.html"><i class="fas fa-hiking"></i> Trekking</a>
+                <a href="food.html"><i class="fas fa-utensils"></i> Food</a>
+                <a href="culture.html"><i class="fas fa-cultural-formation"></i> Culture</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="form-header">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="header-text">
+                    <h1>Sikkim Travel Planner</h1>
+                    <p>Create your personalized travel itinerary and get a detailed PDF guide</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <form id="travel-form" class="travel-form">
+                <!-- Personal Details Section -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-user"></i>
+                        <h2>Personal Details</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">
+                                <i class="fas fa-user"></i>
+                                First Name *
+                            </label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">
+                                <i class="fas fa-user"></i>
+                                Last Name *
+                            </label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i>
+                                Email Address *
+                            </label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">
+                                <i class="fas fa-phone"></i>
+                                Phone Number *
+                            </label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">
+                                <i class="fas fa-calendar"></i>
+                                Age *
+                            </label>
+                            <input type="number" id="age" name="age" min="1" max="120" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nationality">
+                                <i class="fas fa-flag"></i>
+                                Nationality *
+                            </label>
+                            <input type="text" id="nationality" name="nationality" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="address">
+                            <i class="fas fa-home"></i>
+                            Complete Address *
+                        </label>
+                        <textarea id="address" name="address" rows="3" required placeholder="Enter your complete address including city, state, and country"></textarea>
+                    </div>
+                </div>
+
+                <!-- Travel Details Section -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-plane"></i>
+                        <h2>Travel Details</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="startDate">
+                                <i class="fas fa-calendar-day"></i>
+                                Start Date *
+                            </label>
+                            <input type="date" id="startDate" name="startDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endDate">
+                                <i class="fas fa-calendar-day"></i>
+                                End Date *
+                            </label>
+                            <input type="date" id="endDate" name="endDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="groupSize">
+                                <i class="fas fa-users"></i>
+                                Group Size *
+                            </label>
+                            <select id="groupSize" name="groupSize" required>
+                                <option value="">Select group size</option>
+                                <option value="1">Solo (1 person)</option>
+                                <option value="2">Couple (2 people)</option>
+                                <option value="3-4">Small group (3-4 people)</option>
+                                <option value="5-8">Family/Friends (5-8 people)</option>
+                                <option value="9+">Large group (9+ people)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">
+                                <i class="fas fa-wallet"></i>
+                                Budget Range *
+                            </label>
+                            <select id="budget" name="budget" required>
+                                <option value="">Select budget range</option>
+                                <option value="budget">Budget (₹5,000-₹15,000 per person)</option>
+                                <option value="mid-range">Mid-range (₹15,000-₹30,000 per person)</option>
+                                <option value="luxury">Luxury (₹30,000-₹50,000 per person)</option>
+                                <option value="premium">Premium (₹50,000+ per person)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accommodation">
+                                <i class="fas fa-bed"></i>
+                                Accommodation Type *
+                            </label>
+                            <select id="accommodation" name="accommodation" required>
+                                <option value="">Select accommodation</option>
+                                <option value="guesthouse">Guesthouse/Homestay</option>
+                                <option value="hotel">Hotel (3-4 star)</option>
+                                <option value="luxury-resort">Luxury Resort</option>
+                                <option value="camping">Camping/Tents</option>
+                                <option value="mixed">Mixed options</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transportation">
+                                <i class="fas fa-car"></i>
+                                Transportation *
+                            </label>
+                            <select id="transportation" name="transportation" required>
+                                <option value="">Select transportation</option>
+                                <option value="shared-taxi">Shared Taxi</option>
+                                <option value="private-car">Private Car</option>
+                                <option value="suv">SUV/Jeep</option>
+                                <option value="public-transport">Public Transport</option>
+                                <option value="rental-bike">Rental Bike</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Places to Visit Section -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h2>Places You Want to Visit</h2>
+                    </div>
+
+                    <div class="places-grid">
+                        <!-- Monasteries -->
+                        <div class="place-category">
+                            <h3><i class="fas fa-place-of-worship"></i> Monasteries</h3>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Rumtek Monastery">
+                                    <span class="checkmark"></span>
+                                    Rumtek Monastery
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Pemayangtse Monastery">
+                                    <span class="checkmark"></span>
+                                    Pemayangtse Monastery
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Tashiding Monastery">
+                                    <span class="checkmark"></span>
+                                    Tashiding Monastery
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Dubdi Monastery">
+                                    <span class="checkmark"></span>
+                                    Dubdi Monastery
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Enchey Monastery">
+                                    <span class="checkmark"></span>
+                                    Enchey Monastery
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Sangachoeling Monastery">
+                                    <span class="checkmark"></span>
+                                    Sangachoeling Monastery
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Tourist Attractions -->
+                        <div class="place-category">
+                            <h3><i class="fas fa-mountain"></i> Tourist Attractions</h3>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Gangtok City">
+                                    <span class="checkmark"></span>
+                                    Gangtok City
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Tsomgo Lake">
+                                    <span class="checkmark"></span>
+                                    Tsomgo Lake
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Nathula Pass">
+                                    <span class="checkmark"></span>
+                                    Nathula Pass
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Yuksom">
+                                    <span class="checkmark"></span>
+                                    Yuksom
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Pelling">
+                                    <span class="checkmark"></span>
+                                    Pelling
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Namchi">
+                                    <span class="checkmark"></span>
+                                    Namchi
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Ravangla">
+                                    <span class="checkmark"></span>
+                                    Ravangla
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Lachung">
+                                    <span class="checkmark"></span>
+                                    Lachung
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Lachen">
+                                    <span class="checkmark"></span>
+                                    Lachen
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Gurudongmar Lake">
+                                    <span class="checkmark"></span>
+                                    Gurudongmar Lake
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Trekking Routes -->
+                        <div class="place-category">
+                            <h3><i class="fas fa-hiking"></i> Trekking Routes</h3>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Goecha La Trek">
+                                    <span class="checkmark"></span>
+                                    Goecha La Trek
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Kanchenjunga Base Camp">
+                                    <span class="checkmark"></span>
+                                    Kanchenjunga Base Camp
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Sandakphu Trek">
+                                    <span class="checkmark"></span>
+                                    Sandakphu Trek
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Dzongri Trek">
+                                    <span class="checkmark"></span>
+                                    Dzongri Trek
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Green Lake Trek">
+                                    <span class="checkmark"></span>
+                                    Green Lake Trek
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Singalila Ridge Trek">
+                                    <span class="checkmark"></span>
+                                    Singalila Ridge Trek
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Cultural Experiences -->
+                        <div class="place-category">
+                            <h3><i class="fas fa-cultural-formation"></i> Cultural Experiences</h3>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Local Markets">
+                                    <span class="checkmark"></span>
+                                    Local Markets
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Traditional Festivals">
+                                    <span class="checkmark"></span>
+                                    Traditional Festivals
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Handicraft Centers">
+                                    <span class="checkmark"></span>
+                                    Handicraft Centers
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Tea Gardens">
+                                    <span class="checkmark"></span>
+                                    Tea Gardens
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Village Homestays">
+                                    <span class="checkmark"></span>
+                                    Village Homestays
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="places" value="Local Cuisine Tours">
+                                    <span class="checkmark"></span>
+                                    Local Cuisine Tours
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Travel Preferences Section -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-heart"></i>
+                        <h2>Travel Preferences</h2>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="interests">
+                                <i class="fas fa-star"></i>
+                                Primary Interests *
+                            </label>
+                            <select id="interests" name="interests" required>
+                                <option value="">Select your interest</option>
+                                <option value="spiritual">Spiritual & Religious</option>
+                                <option value="adventure">Adventure & Trekking</option>
+                                <option value="cultural">Cultural Exploration</option>
+                                <option value="photography">Photography</option>
+                                <option value="nature">Nature & Wildlife</option>
+                                <option value="relaxation">Relaxation & Wellness</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="activityLevel">
+                                <i class="fas fa-dumbbell"></i>
+                                Activity Level *
+                            </label>
+                            <select id="activityLevel" name="activityLevel" required>
+                                <option value="">Select activity level</option>
+                                <option value="low">Low - Comfortable sightseeing</option>
+                                <option value="moderate">Moderate - Some hiking & walking</option>
+                                <option value="high">High - Active trekking & adventure</option>
+                                <option value="extreme">Extreme - Challenging expeditions</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="season">
+                                <i class="fas fa-calendar-week"></i>
+                                Preferred Season *
+                            </label>
+                            <select id="season" name="season" required>
+                                <option value="">Select season</option>
+                                <option value="spring">Spring (March-May)</option>
+                                <option value="summer">Summer (June-August)</option>
+                                <option value="autumn">Autumn (September-November)</option>
+                                <option value="winter">Winter (December-February)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">
+                                <i class="fas fa-graduation-cap"></i>
+                                Travel Experience *
+                            </label>
+                            <select id="experience" name="experience" required>
+                                <option value="">Select experience level</option>
+                                <option value="first-time">First time to Himalayas</option>
+                                <option value="some-experience">Some mountain experience</option>
+                                <option value="experienced">Experienced trekker</option>
+                                <option value="expert">Expert mountaineer</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="specialRequests">
+                            <i class="fas fa-comment-alt"></i>
+                            Special Requests or Medical Conditions
+                        </label>
+                        <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Any special dietary requirements, medical conditions, or specific requests..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="form-section">
+                    <div class="submit-section">
+                        <button type="submit" class="generate-pdf-btn">
+                            <i class="fas fa-file-pdf"></i>
+                            Generate My Travel PDF
+                        </button>
+                        
+                        <p class="form-note">
+                            <i class="fas fa-info-circle"></i>
+                            Your personalized travel itinerary PDF will include recommendations based on your preferences, suggested accommodations, and detailed travel information.
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loading-modal" class="loading-modal">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Generating Your Travel PDF</h3>
+            <p>Please wait while we create your personalized itinerary...</p>
+        </div>
+    </div>
+
+    <script src="travel-planner.js"></script>
+</body>
+</html>

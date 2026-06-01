@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Trekking</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+
+    <div class="hero-background">
+        <img src="download.jpeg" alt="A Buddhist monastery perched on a steep cliff surrounded by dramatic Himalayan mountains, with colorful prayer flags fluttering along the path leading to the monastery. The scene is serene and awe-inspiring, with misty peaks and a warm, golden sky creating a peaceful and spiritual atmosphere.">
+        <div class="hero-overlay">
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>Sikkim Trekking</h1>
+            <p>Adventure Through Himalayan Trails</p>
+        </div>
+    </div>
+
+    <div class="monastery-content">
+        <div class="monastery-item">
+            <img src="The Goechala Trek_ 11 days in Sikkim - Travel I Must.jpeg" alt="Goecha La Trek">
+            <div class="monastery-info">
+                <h2>Goecha La Trek</h2>
+                <p>One of the most spectacular treks in Sikkim offering breathtaking views of Kanchenjunga. This challenging 11-day trek takes you through rhododendron forests, alpine meadows, and pristine lakes with stunning mountain vistas.</p>
+                <button class="know-more-btn" data-trek="goechala"><i class="fas fa-info-circle"></i> Know More</button>
+            </div>
+        </div>
+
+        <div class="monastery-item">
+            <img src="Yumthang.jpeg" alt="Dzongri Trek">
+            <div class="monastery-info">
+                <h2>Dzongri Trek</h2>
+                <p>A moderate trek perfect for beginners, offering panoramic views of major Himalayan peaks. The trail passes through beautiful forests, traditional villages, and provides an excellent introduction to high-altitude trekking.</p>
+                <button class="know-more-btn" data-trek="dzongri"><i class="fas fa-info-circle"></i> Know More</button>
+            </div>
+        </div>
+
+        <div class="monastery-item">
+            <img src="something special ♡.jpeg" alt="Singalila Ridge Trek">
+            <div class="monastery-info">
+                <h2>Singalila Ridge Trek</h2>
+                <p>Walk along the Indo-Nepal border with stunning sunrise views over Everest, Lhotse, and Kanchenjunga. This ridge trek offers some of the best mountain panoramas in the entire Himalayan range.</p>
+                <button class="know-more-btn" data-trek="singalila"><i class="fas fa-info-circle"></i> Know More</button>
+            </div>
+        </div>
+
+        <div class="monastery-item">
+            <img src="Kashmir Great Lakes Trek.jpeg" alt="Green Lake Trek">
+            <div class="monastery-info">
+                <h2>Green Lake Trek</h2>
+                <p>An adventurous high-altitude trek leading to the base camp of Mount Kanchenjunga. This challenging expedition takes you through diverse ecosystems and offers close encounters with the world's third-highest peak.</p>
+                <button class="know-more-btn" data-trek="greenlake"><i class="fas fa-info-circle"></i> Know More</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .hero-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-overlay h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-overlay p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .monastery-content {
+            position: relative;
+            z-index: 2;
+            margin-top: 100vh;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            padding: 60px 40px;
+            border-radius: 30px 30px 0 0;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            box-shadow: 0 -20px 60px rgba(6, 182, 212, 0.2);
+        }
+
+        .monastery-item {
+            display: flex;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .monastery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .monastery-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        .monastery-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .monastery-item img {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .monastery-info {
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .monastery-info h2 {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(6, 182, 212, 0.3);
+            font-weight: 700;
+        }
+
+        .monastery-info p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(30, 41, 59, 0.95);
+            text-shadow: 2px 2px 4px rgba(6, 182, 212, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .know-more-btn {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            align-self: flex-start;
+        }
+
+        .know-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+        }
+
+        .trek-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .trek-modal-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.85));
+            backdrop-filter: blur(40px) saturate(200%);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            border-radius: 25px;
+            padding: 0;
+            width: 85vw;
+            height: 80vh;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(6, 182, 212, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .trek-image-section {
+            width: 45%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .trek-main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .trek-gallery {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .trek-gallery img {
+            width: 70px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .trek-gallery img:hover,
+        .trek-gallery img.active {
+            opacity: 1;
+            transform: scale(1.15);
+            border-color: rgba(6, 182, 212, 0.8);
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .trek-details-section {
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(248, 250, 252, 0.1));
+            backdrop-filter: blur(60px) saturate(180%);
+            border-left: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .trek-details-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.03), rgba(6, 182, 212, 0.01));
+            pointer-events: none;
+        }
+
+        .trek-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.1));
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #06b6d4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .trek-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(6, 182, 212, 0.2));
+            border-color: rgba(6, 182, 212, 0.6);
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .trek-close-bottom {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            align-self: center;
+        }
+
+        .trek-close-bottom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        .trek-modal h2 {
+            color: #06b6d4;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .trek-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .trek-info-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(248, 250, 252, 0.1));
+            backdrop-filter: blur(20px) saturate(150%);
+            padding: 18px;
+            border-radius: 15px;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .trek-info-item h4 {
+            color: #06b6d4;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .trek-info-item p {
+            color: rgba(30, 41, 59, 0.9);
+            margin: 0;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .monastery-item {
+                flex-direction: column !important;
+            }
+            .monastery-item img {
+                width: 100%;
+                height: 250px;
+            }
+            .hero-overlay h1 {
+                font-size: 2.5rem;
+            }
+            .trek-modal-content {
+                flex-direction: column;
+                width: 95vw;
+                height: 90vh;
+                padding: 0;
+            }
+            .trek-image-section {
+                width: 100%;
+                height: 40%;
+            }
+            .trek-details-section {
+                width: 100%;
+                height: 60%;
+                border-left: none;
+                border-top: 1px solid rgba(251, 191, 36, 0.3);
+            }
+            .trek-main-image {
+                height: 200px;
+            }
+        }
+    </style>
+
+    <script>
+        function splitText(element) {
+            const text = element.textContent;
+            element.innerHTML = '';
+            text.split(' ').forEach((word, i) => {
+                const span = document.createElement('span');
+                span.textContent = word + ' ';
+                span.style.opacity = '0';
+                span.style.transform = 'translateY(20px)';
+                span.style.transition = `all 0.6s ease ${i * 0.1}s`;
+                span.style.display = 'inline-block';
+                span.classList.add('word');
+                element.appendChild(span);
+            });
+        }
+
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.querySelectorAll('.word').forEach((word, i) => {
+                        setTimeout(() => {
+                            word.style.opacity = '1';
+                            word.style.transform = 'translateY(0)';
+                        }, i * 100);
+                    });
+                } else {
+                    entry.target.classList.remove('visible');
+                    entry.target.querySelectorAll('.word').forEach(word => {
+                        word.style.opacity = '0';
+                        word.style.transform = 'translateY(20px)';
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.monastery-info h2, .monastery-info p').forEach(splitText);
+            
+            const monasteryItems = document.querySelectorAll('.monastery-item');
+            monasteryItems.forEach(item => {
+                observer.observe(item);
+            });
+
+            // Trek data
+            const trekData = {
+                goechala: {
+                    name: 'Goecha La Trek',
+                    startingPoint: 'Yuksom, West Sikkim',
+                    length: '90 km (11 days)',
+                    altitude: '4,940m',
+                    difficulty: 'Challenging',
+                    bestTime: 'April-May, September-November',
+                    images: [
+                        'The Goechala Trek_ 11 days in Sikkim - Travel I Must.jpeg',
+                        'Yumthang.jpeg',
+                        'something special ♡.jpeg'
+                    ],
+                    views: 'Kanchenjunga peak, Pandim, Kabru, Talung peaks, pristine alpine lakes'
+                },
+                dzongri: {
+                    name: 'Dzongri Trek',
+                    startingPoint: 'Yuksom, West Sikkim',
+                    length: '45 km (5 days)',
+                    altitude: '4,020m',
+                    difficulty: 'Moderate',
+                    bestTime: 'March-May, October-December',
+                    images: [
+                        'Yumthang.jpeg',
+                        'The Goechala Trek_ 11 days in Sikkim - Travel I Must.jpeg',
+                        'Kashmir Great Lakes Trek.jpeg'
+                    ],
+                    views: 'Kanchenjunga, Pandim, Narsing, Kabru peaks, rhododendron forests'
+                },
+                singalila: {
+                    name: 'Singalila Ridge Trek',
+                    startingPoint: 'Manebhanjan, Darjeeling',
+                    length: '32 km (4 days)',
+                    altitude: '3,636m',
+                    difficulty: 'Easy to Moderate',
+                    bestTime: 'October-December, March-May',
+                    images: [
+                        'something special ♡.jpeg',
+                        'Yumthang.jpeg',
+                        'The Goechala Trek_ 11 days in Sikkim - Travel I Must.jpeg'
+                    ],
+                    views: 'Everest, Lhotse, Makalu, Kanchenjunga, sunrise over Himalayas'
+                },
+                greenlake: {
+                    name: 'Green Lake Trek',
+                    startingPoint: 'Lachen, North Sikkim',
+                    length: '70 km (9 days)',
+                    altitude: '5,000m',
+                    difficulty: 'Very Challenging',
+                    bestTime: 'May-June, September-October',
+                    images: [
+                        'Kashmir Great Lakes Trek.jpeg',
+                        'The Goechala Trek_ 11 days in Sikkim - Travel I Must.jpeg',
+                        'Yumthang.jpeg'
+                    ],
+                    views: 'Kanchenjunga base camp, glacial lakes, high altitude desert landscape'
+                }
+            };
+
+            // Know More button functionality
+            document.querySelectorAll('.know-more-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const trek = button.dataset.trek;
+                    showTrekModal(trekData[trek]);
+                });
+            });
+
+            function showTrekModal(trek) {
+                const modal = document.createElement('div');
+                modal.className = 'trek-modal';
+                modal.innerHTML = `
+                    <div class="trek-modal-content">
+                        <span class="trek-close">&times;</span>
+                        <div class="trek-image-section">
+                            <img src="${trek.images[0]}" alt="${trek.name}" class="trek-main-image" id="mainTrekImage">
+                            <div class="trek-gallery">
+                                ${trek.images.map((img, i) => `
+                                    <img src="${img}" alt="View ${i+1}" class="${i === 0 ? 'active' : ''}" onclick="changeTrekImage('${img}', this)">
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="trek-details-section">
+                            <h2>${trek.name}</h2>
+                            <div class="trek-info">
+                                <div class="trek-info-item">
+                                    <h4><i class="fas fa-map-marker-alt"></i> Starting Point</h4>
+                                    <p>${trek.startingPoint}</p>
+                                </div>
+                                <div class="trek-info-item">
+                                    <h4><i class="fas fa-route"></i> Trek Length</h4>
+                                    <p>${trek.length}</p>
+                                </div>
+                                <div class="trek-info-item">
+                                    <h4><i class="fas fa-mountain"></i> Maximum Altitude</h4>
+                                    <p>${trek.altitude}</p>
+                                </div>
+                                <div class="trek-info-item">
+                                    <h4><i class="fas fa-signal"></i> Difficulty Level</h4>
+                                    <p>${trek.difficulty}</p>
+                                </div>
+                                <div class="trek-info-item">
+                                    <h4><i class="fas fa-calendar"></i> Best Time</h4>
+                                    <p>${trek.bestTime}</p>
+                                </div>
+                                <div class="trek-info-item">
+                                    <h4><i class="fas fa-eye"></i> Views & Highlights</h4>
+                                    <p>${trek.views}</p>
+                                </div>
+                            </div>
+                            <button class="trek-close-bottom" onclick="closeTrekModal()"><i class="fas fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                function closeTrekModal() {
+                    modal.style.opacity = '0';
+                    setTimeout(() => {
+                        if (document.body.contains(modal)) {
+                            document.body.removeChild(modal);
+                        }
+                    }, 300);
+                }
+                
+                modal.querySelector('.trek-close').onclick = closeTrekModal;
+                modal.querySelector('.trek-close-bottom').onclick = closeTrekModal;
+                
+                window.closeTrekModal = closeTrekModal;
+                
+                modal.onclick = (e) => {
+                    if (e.target === modal) {
+                        closeTrekModal();
+                    }
+                };
+                
+                document.addEventListener('keydown', function escapeHandler(e) {
+                    if (e.key === 'Escape') {
+                        closeTrekModal();
+                        document.removeEventListener('keydown', escapeHandler);
+                    }
+                });
+            }
+
+            window.changeTrekImage = function(src, element) {
+                document.getElementById('mainTrekImage').src = src;
+                document.querySelectorAll('.trek-gallery img').forEach(img => img.classList.remove('active'));
+                element.classList.add('active');
+            };
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

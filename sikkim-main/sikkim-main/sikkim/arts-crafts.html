@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional Arts & Crafts - Sikkim</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero-background">
+        <img src="Making of the Prayer Wheel - Sikkim, India.jpeg" alt="Traditional Arts & Crafts">
+        <div class="hero-overlay">
+            <button class="back-btn" onclick="window.location.href='culture.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>Traditional Arts & Crafts</h1>
+            <p>Artistic Heritage of Sikkim</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="item">
+            <img src="Making of the Prayer Wheel - Sikkim, India.jpeg" alt="Thangka Paintings">
+            <div class="info">
+                <h2>Thangka Paintings</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Thangka paintings are sacred Buddhist artworks used for meditation and teaching. They serve as visual aids for spiritual practice and preserve religious iconography, making complex Buddhist concepts accessible through art.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Originating in Tibet in the 7th century, thangka art came to Sikkim with Tibetan Buddhism. Monks and skilled artisans have maintained this tradition for over 300 years, using natural pigments and following strict iconographic rules passed down through generations.</p>
+                    
+                    <button class="see-more-btn" onclick="showGallery('thangka')"><i class="fas fa-images"></i> See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="download (2).jpeg" alt="Handwoven Textiles">
+            <div class="info">
+                <h2>Handwoven Textiles</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Traditional textiles represent cultural identity and social status in Sikkimese society. Each pattern and color combination tells stories of heritage, with different designs worn during festivals, ceremonies, and daily life.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Weaving traditions in Sikkim blend influences from Tibet, Nepal, and Bhutan. The Lepcha, Bhutia, and Nepali communities each contributed unique techniques, creating a rich textile heritage that dates back centuries and continues to thrive today.</p>
+                    
+                    <button class="see-more-btn" onclick="showGallery('textiles')"><i class="fas fa-images"></i> See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="Hemis-Festival, Ladakh.jpeg" alt="Wood Carving">
+            <div class="info">
+                <h2>Wood Carving</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Intricate wood carvings adorn monasteries, homes, and religious artifacts. These carvings serve both decorative and spiritual purposes, featuring Buddhist symbols, dragons, and floral motifs that protect and bless the spaces they inhabit.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Wood carving in Sikkim evolved from Tibetan and Newar traditions brought by early settlers. Master craftsmen established workshops in the 18th century, developing distinctive Sikkimese styles that blend religious symbolism with local artistic sensibilities.</p>
+                    
+                    <button class="see-more-btn" onclick="showGallery('woodcarving')"><i class="fas fa-images"></i> See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="Lepcha traditional house.jpeg" alt="Bamboo Crafts">
+            <div class="info">
+                <h2>Bamboo & Cane Crafts</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Bamboo and cane crafts are essential for daily life in Sikkim, creating baskets, containers, and household items. These eco-friendly crafts represent sustainable living practices and deep connection with nature.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Indigenous Lepcha communities pioneered bamboo crafting techniques thousands of years ago. Their knowledge of local bamboo species and traditional weaving methods has been preserved and adapted by subsequent communities, maintaining this ancient craft tradition.</p>
+                    
+                    <button class="see-more-btn" onclick="showGallery('bamboo')"><i class="fas fa-images"></i> See More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; overflow-x: hidden; }
+        .hero-background { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; }
+        .hero-background img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+        .back-btn { position: absolute; top: 30px; left: 30px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 18px; backdrop-filter: blur(10px); }
+        .hero-overlay h1 { font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .hero-overlay p { font-size: 1.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+        .content { position: relative; z-index: 2; margin-top: 100vh; background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%); backdrop-filter: blur(30px) saturate(180%); padding: 60px 40px; border-radius: 30px 30px 0 0; border: 1px solid rgba(6, 182, 212, 0.2); box-shadow: 0 -20px 60px rgba(6, 182, 212, 0.2); }
+        .item { display: flex; margin-bottom: 80px; opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
+        .item.visible { opacity: 1; transform: translateY(0); }
+        .item:nth-child(even) { flex-direction: row-reverse; }
+        .item img { width: 350px; height: 400px; object-fit: cover; border-radius: 15px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; }
+        .item:hover img { transform: scale(1.05); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5); }
+        .info { padding: 40px; flex: 1; display: flex; flex-direction: column; }
+        .info h2 { font-size: 2.5rem; color: #1e293b; margin-bottom: 30px; text-shadow: 3px 3px 6px rgba(6, 182, 212, 0.3); font-weight: 700; }
+        .details h3 { font-size: 1.4rem; color: #06b6d4; margin-bottom: 15px; margin-top: 25px; font-weight: 600; }
+        .details h3:first-child { margin-top: 0; }
+        .details p { font-size: 1.1rem; line-height: 1.7; color: rgba(30, 41, 59, 0.9); text-align: justify; margin-bottom: 20px; }
+        .see-more-btn {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .see-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+
+        .gallery-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .gallery-content h3 {
+            color: #8b5cf6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .locations-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .locations-section h4 {
+            color: #8b5cf6;
+            margin-bottom: 15px;
+        }
+
+        .location-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .location-item h5 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .location-item p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) { 
+            .item { flex-direction: column !important; } 
+            .item img { width: 100%; height: 250px; } 
+            .hero-overlay h1 { font-size: 2.5rem; } 
+            .info { padding: 20px; }
+            .gallery-content { width: 95%; padding: 20px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        }
+    </style>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+        const artGalleries = {
+            thangka: {
+                name: 'Thangka Paintings Gallery',
+                images: [
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg',
+                    'download (2).jpeg',
+                    'Hemis-Festival, Ladakh.jpeg',
+                    'Lepcha traditional house.jpeg'
+                ],
+                locations: [
+                    {
+                        name: 'Rumtek Monastery',
+                        description: 'Watch master artists create thangkas in the monastery workshop. Best time: 9 AM - 4 PM'
+                    },
+                    {
+                        name: 'Institute of Tibetology, Gangtok',
+                        description: 'Extensive collection of ancient thangkas and ongoing restoration work'
+                    },
+                    {
+                        name: 'Pemayangtse Monastery',
+                        description: 'Traditional thangka painting classes and exhibitions'
+                    },
+                    {
+                        name: 'Enchey Monastery',
+                        description: 'Sacred thangkas displayed during festivals and special occasions'
+                    }
+                ]
+            },
+            textiles: {
+                name: 'Handwoven Textiles Gallery',
+                images: [
+                    'download (2).jpeg',
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg',
+                    'Lepcha traditional house.jpeg',
+                    'Hemis-Festival, Ladakh.jpeg'
+                ],
+                locations: [
+                    {
+                        name: 'Lal Bazaar, Gangtok',
+                        description: 'Traditional textile market with authentic Sikkimese fabrics and garments'
+                    },
+                    {
+                        name: 'Directorate of Handicrafts & Handloom',
+                        description: 'Government emporium showcasing certified handwoven products'
+                    },
+                    {
+                        name: 'Yuksom Village',
+                        description: 'Visit local weavers and see traditional looms in action'
+                    },
+                    {
+                        name: 'Ravangla Handicraft Center',
+                        description: 'Learn weaving techniques and purchase authentic textiles'
+                    }
+                ]
+            },
+            woodcarving: {
+                name: 'Wood Carving Gallery',
+                images: [
+                    'Hemis-Festival, Ladakh.jpeg',
+                    'Lepcha traditional house.jpeg',
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg',
+                    'download (2).jpeg'
+                ],
+                locations: [
+                    {
+                        name: 'Namchi Wood Carving Center',
+                        description: 'Master craftsmen create intricate religious and decorative carvings'
+                    },
+                    {
+                        name: 'Pelling Monastery Workshops',
+                        description: 'Traditional monastery wood carving and restoration work'
+                    },
+                    {
+                        name: 'Jorethang Craft Village',
+                        description: 'Local artisans specializing in furniture and decorative woodwork'
+                    },
+                    {
+                        name: 'Singtam Handicraft Hub',
+                        description: 'Contemporary and traditional wood carving demonstrations'
+                    }
+                ]
+            },
+            bamboo: {
+                name: 'Bamboo & Cane Crafts Gallery',
+                images: [
+                    'Lepcha traditional house.jpeg',
+                    'download (2).jpeg',
+                    'Hemis-Festival, Ladakh.jpeg',
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg'
+                ],
+                locations: [
+                    {
+                        name: 'Dzongu (Lepcha Reserve)',
+                        description: 'Experience authentic Lepcha bamboo crafting with indigenous artisans'
+                    },
+                    {
+                        name: 'Mangan Bamboo Craft Center',
+                        description: 'Learn traditional basket weaving and bamboo furniture making'
+                    },
+                    {
+                        name: 'Rangpo Border Market',
+                        description: 'Wide variety of bamboo products and live crafting demonstrations'
+                    },
+                    {
+                        name: 'Pakyong Craft Village',
+                        description: 'Sustainable bamboo crafts and eco-friendly product workshops'
+                    }
+                ]
+            }
+        };
+
+        function showGallery(artType) {
+            const modal = document.getElementById('gallery-modal');
+            const data = artGalleries[artType];
+            
+            document.getElementById('gallery-title').textContent = data.name;
+            
+            const galleryGrid = document.getElementById('gallery-grid');
+            galleryGrid.innerHTML = '';
+            data.images.forEach(image => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = `<img src="${image}" alt="${data.name}">`;
+                galleryGrid.appendChild(div);
+            });
+            
+            const locationsList = document.getElementById('gallery-locations');
+            locationsList.innerHTML = '';
+            data.locations.forEach(location => {
+                const div = document.createElement('div');
+                div.className = 'location-item';
+                div.innerHTML = `
+                    <h5>${location.name}</h5>
+                    <p>${location.description}</p>
+                `;
+                locationsList.appendChild(div);
+            });
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeGallery() {
+            document.getElementById('gallery-modal').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.item').forEach(item => observer.observe(item));
+        });
+    </script>
+
+    <div id="gallery-modal" class="gallery-modal">
+        <div class="gallery-content">
+            <button class="gallery-close" onclick="closeGallery()">&times;</button>
+            <h3 id="gallery-title">Arts Gallery</h3>
+            
+            <div class="gallery-grid" id="gallery-grid"></div>
+            
+            <div class="locations-section">
+                <h4>Where to Experience This Art</h4>
+                <div id="gallery-locations"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

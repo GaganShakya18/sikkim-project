@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Food & Cuisine</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+
+    <div class="hero-background">
+        <img src="Sikkim thali.jpeg" alt="Sikkim Food">
+        <div class="hero-overlay">
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>Sikkim Food & Cuisine</h1>
+            <p>Authentic Flavors of the Himalayas</p>
+        </div>
+    </div>
+
+    <div class="monastery-content">
+        <div class="food-filter-bar">
+            <h3>Food Preferences</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-utensils"></i>
+                    All
+                </button>
+                <button class="filter-btn" data-filter="veg">
+                    <i class="fas fa-leaf"></i>
+                    Vegetarian
+                </button>
+                <button class="filter-btn" data-filter="non-veg">
+                    <i class="fas fa-drumstick-bite"></i>
+                    Non-Vegetarian
+                </button>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="veg">
+            <img src="Sikkim thali.jpeg" alt="Traditional Thali">
+            <div class="monastery-info">
+                <h2>Traditional Thali</h2>
+                <p>Experience the authentic Sikkimese thali featuring dal, rice, seasonal vegetables, and traditional pickles. This complete meal represents the essence of local cuisine with its perfect balance of flavors and nutrition.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="thali"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="non-veg">
+            <img src="momos image .jpg" alt="Momos">
+            <div class="monastery-info">
+                <h2>Momos</h2>
+                <p>Steamed dumplings filled with vegetables or meat, served with spicy chutney. These Tibetan-influenced delicacies have become synonymous with Sikkim's street food culture and are loved by locals and tourists alike.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="momos"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="veg">
+            <img src="Gundruk Ko Jhol (Fermented Mustard Green Soup) गुन्द्रुककाे झोल.jpeg" alt="Gundruk">
+            <div class="monastery-info">
+                <h2>Gundruk</h2>
+                <p>Fermented leafy green vegetables that form an essential part of Nepali and Sikkimese cuisine. This nutritious dish is rich in vitamins and provides a unique tangy flavor that complements rice and dal perfectly.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="gundruk"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="non-veg">
+            <img src="'Sweet poison'_ How jaggery could be silently destroying your body.jpeg" alt="Chhurpi">
+            <div class="monastery-info">
+                <h2>Chhurpi</h2>
+                <p>Traditional yak cheese that can be consumed fresh or dried. This protein-rich delicacy is a staple food in high-altitude regions and represents the pastoral heritage of Sikkim's mountain communities.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="chhurpi"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="veg">
+            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400" alt="Sel Roti">
+            <div class="monastery-info">
+                <h2>Sel Roti</h2>
+                <p>Traditional ring-shaped rice bread made from rice flour, milk, and sugar. This sweet delicacy is prepared during festivals and special occasions, offering a crispy exterior and soft interior.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="selroti"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="non-veg">
+            <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400" alt="Phagshapa">
+            <div class="monastery-info">
+                <h2>Phagshapa</h2>
+                <p>Traditional pork curry cooked with radish and dried chilies. This spicy dish is a staple in Sikkimese households and represents the authentic flavors of the region's meat-based cuisine.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="phagshapa"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="veg">
+            <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400" alt="Kinema">
+            <div class="monastery-info">
+                <h2>Kinema</h2>
+                <p>Fermented soybean curry that's rich in protein and probiotics. This traditional dish is prepared with tomatoes, onions, and local spices, making it a healthy and flavorful vegetarian option.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="kinema"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="veg">
+            <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400" alt="Dhindo">
+            <div class="monastery-info">
+                <h2>Dhindo</h2>
+                <p>Traditional porridge made from millet or corn flour. This nutritious staple food is served with vegetables, pickles, or curry, providing essential carbohydrates and energy for mountain life.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="dhindo"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="non-veg">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400" alt="Churpee Ningro">
+            <div class="monastery-info">
+                <h2>Churpee Ningro</h2>
+                <p>Dried yak cheese cooked with fiddlehead ferns. This unique combination offers a perfect blend of protein from cheese and vitamins from wild ferns, representing mountain foraging traditions.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="churpeeningro"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="veg">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400" alt="Saelroti">
+            <div class="monastery-info">
+                <h2>Saelroti</h2>
+                <p>Sweet rice flour donuts prepared during Tihar festival. These golden rings are made with rice flour, milk, and cardamom, offering a delightful sweet treat that's crispy outside and soft inside.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="saelroti"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monastery-item" data-type="non-veg">
+            <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400" alt="Sukuti">
+            <div class="monastery-info">
+                <h2>Sukuti</h2>
+                <p>Dried meat jerky made from buffalo or yak meat. This protein-rich preserved food is seasoned with local spices and serves as a long-lasting source of nutrition for high-altitude living.</p>
+                <div class="rating-section">
+                    <button class="places-btn" data-dish="sukuti"><i class="fas fa-map-marker-alt"></i> Places</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .hero-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-overlay h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-overlay p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .monastery-content {
+            position: relative;
+            z-index: 2;
+            margin-top: 100vh;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            padding: 60px 40px;
+            border-radius: 30px 30px 0 0;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            box-shadow: 0 -20px 60px rgba(6, 182, 212, 0.2);
+        }
+
+        .food-filter-bar {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .food-filter-bar h3 {
+            color: #06b6d4;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.05));
+            backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: rgba(30, 41, 59, 0.9);
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.1));
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.2);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+            border-color: #06b6d4;
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .monastery-item.hidden {
+            display: none;
+        }
+
+        .monastery-item {
+            display: flex;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .monastery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .monastery-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        .monastery-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .monastery-item img {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .monastery-info {
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .monastery-info h2 {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(6, 182, 212, 0.3);
+            font-weight: 700;
+        }
+
+        .monastery-info p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(30, 41, 59, 0.95);
+            text-shadow: 2px 2px 4px rgba(6, 182, 212, 0.2);
+        }
+
+        .rating-section {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .stars {
+            display: flex;
+            gap: 5px;
+        }
+
+        .stars i {
+            color: #666;
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+
+        .stars i:hover,
+        .stars i.active {
+            color: #06b6d4;
+        }
+
+        .review-input {
+            background: rgba(255,255,255,0.8);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            color: #1e293b;
+            padding: 8px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .review-input::placeholder {
+            color: rgba(30, 41, 59, 0.6);
+        }
+
+        .submit-review {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .submit-review:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .places-btn {
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .places-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(8, 145, 178, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .monastery-item {
+                flex-direction: column !important;
+            }
+            .monastery-item img {
+                width: 100%;
+                height: 250px;
+            }
+            .hero-overlay h1 {
+                font-size: 2.5rem;
+            }
+            .rating-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .review-input {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+        function splitText(element) {
+            const text = element.textContent;
+            element.innerHTML = '';
+            text.split(' ').forEach((word, i) => {
+                const span = document.createElement('span');
+                span.textContent = word + ' ';
+                span.style.opacity = '0';
+                span.style.transform = 'translateY(20px)';
+                span.style.transition = `all 0.6s ease ${i * 0.1}s`;
+                span.style.display = 'inline-block';
+                span.classList.add('word');
+                element.appendChild(span);
+            });
+        }
+
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.querySelectorAll('.word').forEach((word, i) => {
+                        setTimeout(() => {
+                            word.style.opacity = '1';
+                            word.style.transform = 'translateY(0)';
+                        }, i * 100);
+                    });
+                } else {
+                    entry.target.classList.remove('visible');
+                    entry.target.querySelectorAll('.word').forEach(word => {
+                        word.style.opacity = '0';
+                        word.style.transform = 'translateY(20px)';
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.monastery-info h2, .monastery-info p').forEach(splitText);
+            
+            const monasteryItems = document.querySelectorAll('.monastery-item');
+            monasteryItems.forEach(item => {
+                observer.observe(item);
+            });
+
+            // Food filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const foodItems = document.querySelectorAll('.monastery-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter food items
+                    foodItems.forEach(item => {
+                        const itemType = item.getAttribute('data-type');
+                        
+                        if (filter === 'all' || filter === itemType) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Rating and review functionality
+            document.querySelectorAll('.stars').forEach(starContainer => {
+                const stars = starContainer.querySelectorAll('i');
+                const dish = starContainer.dataset.dish;
+                
+                // Load saved rating
+                const savedRating = localStorage.getItem(`rating-${dish}`);
+                if (savedRating) {
+                    for (let i = 0; i < savedRating; i++) {
+                        stars[i].classList.add('active');
+                    }
+                }
+                
+                stars.forEach((star, index) => {
+                    star.addEventListener('click', () => {
+                        stars.forEach(s => s.classList.remove('active'));
+                        for (let i = 0; i <= index; i++) {
+                            stars[i].classList.add('active');
+                        }
+                        localStorage.setItem(`rating-${dish}`, index + 1);
+                    });
+                });
+            });
+
+            document.querySelectorAll('.submit-review').forEach(button => {
+                button.addEventListener('click', () => {
+                    const dish = button.dataset.dish;
+                    const input = document.querySelector(`.review-input[data-dish="${dish}"]`);
+                    const review = input.value.trim();
+                    
+                    if (review) {
+                        localStorage.setItem(`review-${dish}`, review);
+                        input.value = '';
+                        button.textContent = 'Saved!';
+                        setTimeout(() => {
+                            button.textContent = 'Submit';
+                        }, 2000);
+                    }
+                });
+            });
+
+            // Load saved reviews
+            document.querySelectorAll('.review-input').forEach(input => {
+                const dish = input.dataset.dish;
+                const savedReview = localStorage.getItem(`review-${dish}`);
+                if (savedReview) {
+                    input.placeholder = `Your review: ${savedReview.substring(0, 30)}...`;
+                }
+            });
+
+            // Places functionality
+            const placesData = {
+                thali: [
+                    { name: 'Hotel Tibet', location: 'MG Marg, Gangtok', rating: '4.5', price: '₹250-400' },
+                    { name: 'Taste of Tibet', location: 'Lal Market, Gangtok', rating: '4.2', price: '₹200-350' },
+                    { name: 'Nimtho Restaurant', location: 'Pelling', rating: '4.3', price: '₹180-300' },
+                    { name: 'Monastery Kitchen', location: 'Near Rumtek Monastery', rating: '4.4', price: '₹220-380' },
+                    { name: 'Enchey Cafe', location: 'Near Enchey Monastery', rating: '4.1', price: '₹200-320' },
+                    { name: 'Pemayangtse Dining', location: 'Near Pemayangtse Monastery', rating: '4.3', price: '₹190-310' },
+                    { name: 'Tashiding View Restaurant', location: 'Near Tashiding Monastery', rating: '4.2', price: '₹170-290' }
+                ],
+                momos: [
+                    { name: 'Momo Plaza', location: 'MG Marg, Gangtok', rating: '4.6', price: '₹80-150' },
+                    { name: 'Hot Momos', location: 'Lal Market, Gangtok', rating: '4.4', price: '₹60-120' },
+                    { name: 'Tibetan Kitchen', location: 'Namchi', rating: '4.2', price: '₹70-130' },
+                    { name: 'Rumtek Momo Corner', location: 'Near Rumtek Monastery', rating: '4.5', price: '₹70-140' },
+                    { name: 'Enchey Momo House', location: 'Near Enchey Monastery', rating: '4.3', price: '₹65-125' },
+                    { name: 'Monastery Gate Momos', location: 'Near Pemayangtse Monastery', rating: '4.4', price: '₹60-120' },
+                    { name: 'Tashiding Momo Stall', location: 'Near Tashiding Monastery', rating: '4.2', price: '₹55-110' },
+                    { name: 'Dubdi Monastery Cafe', location: 'Near Dubdi Monastery', rating: '4.1', price: '₹50-100' }
+                ],
+                gundruk: [
+                    { name: 'Local Kitchen', location: 'Gangtok', rating: '4.1', price: '₹120-200' },
+                    { name: 'Mountain View Restaurant', location: 'Pelling', rating: '4.0', price: '₹100-180' },
+                    { name: 'Himalayan Taste', location: 'Yuksom', rating: '4.3', price: '₹90-160' },
+                    { name: 'Rumtek Traditional Kitchen', location: 'Near Rumtek Monastery', rating: '4.2', price: '₹110-190' },
+                    { name: 'Enchey Local Food', location: 'Near Enchey Monastery', rating: '4.0', price: '₹100-170' },
+                    { name: 'Pemayangtse Village Kitchen', location: 'Near Pemayangtse Monastery', rating: '4.1', price: '₹95-165' },
+                    { name: 'Tashiding Organic Kitchen', location: 'Near Tashiding Monastery', rating: '4.3', price: '₹85-155' }
+                ],
+                chhurpi: [
+                    { name: 'Yak Cheese Shop', location: 'Lachung', rating: '4.4', price: '₹300-500' },
+                    { name: 'Mountain Dairy', location: 'Gangtok', rating: '4.2', price: '₹250-400' },
+                    { name: 'Local Market', location: 'Pelling', rating: '4.0', price: '₹200-350' },
+                    { name: 'Rumtek Monastery Store', location: 'Near Rumtek Monastery', rating: '4.3', price: '₹280-450' },
+                    { name: 'Enchey Yak Products', location: 'Near Enchey Monastery', rating: '4.1', price: '₹260-420' },
+                    { name: 'Pemayangtse Cheese Corner', location: 'Near Pemayangtse Monastery', rating: '4.2', price: '₹240-380' },
+                    { name: 'Tashiding Local Dairy', location: 'Near Tashiding Monastery', rating: '4.0', price: '₹220-360' }
+                ],
+                selroti: [
+                    { name: 'Festival Sweets', location: 'Gangtok', rating: '4.3', price: '₹50-100' },
+                    { name: 'Traditional Bakery', location: 'Namchi', rating: '4.1', price: '₹40-80' },
+                    { name: 'Local Sweet Shop', location: 'Pelling', rating: '4.2', price: '₹45-90' },
+                    { name: 'Rumtek Sweet Corner', location: 'Near Rumtek Monastery', rating: '4.4', price: '₹45-95' },
+                    { name: 'Enchey Festival Sweets', location: 'Near Enchey Monastery', rating: '4.2', price: '₹40-85' },
+                    { name: 'Pemayangtse Traditional Bakery', location: 'Near Pemayangtse Monastery', rating: '4.3', price: '₹42-88' },
+                    { name: 'Tashiding Sweet House', location: 'Near Tashiding Monastery', rating: '4.1', price: '₹38-82' }
+                ],
+                phagshapa: [
+                    { name: 'Authentic Sikkim Kitchen', location: 'Gangtok', rating: '4.5', price: '₹300-450' },
+                    { name: 'Traditional Restaurant', location: 'Pelling', rating: '4.3', price: '₹280-420' },
+                    { name: 'Local Eatery', location: 'Yuksom', rating: '4.1', price: '₹250-380' },
+                    { name: 'Rumtek Monastery Kitchen', location: 'Near Rumtek Monastery', rating: '4.4', price: '₹290-440' },
+                    { name: 'Enchey Traditional Food', location: 'Near Enchey Monastery', rating: '4.2', price: '₹270-410' },
+                    { name: 'Pemayangtse Authentic Kitchen', location: 'Near Pemayangtse Monastery', rating: '4.3', price: '₹260-400' },
+                    { name: 'Tashiding Local Restaurant', location: 'Near Tashiding Monastery', rating: '4.1', price: '₹240-370' }
+                ],
+                kinema: [
+                    { name: 'Organic Kitchen', location: 'Gangtok', rating: '4.2', price: '₹150-250' },
+                    { name: 'Health Food Corner', location: 'Pelling', rating: '4.0', price: '₹130-220' },
+                    { name: 'Traditional Taste', location: 'Namchi', rating: '4.1', price: '₹140-230' },
+                    { name: 'Rumtek Health Kitchen', location: 'Near Rumtek Monastery', rating: '4.3', price: '₹145-245' },
+                    { name: 'Enchey Organic Food', location: 'Near Enchey Monastery', rating: '4.1', price: '₹135-225' },
+                    { name: 'Pemayangtse Wellness Kitchen', location: 'Near Pemayangtse Monastery', rating: '4.2', price: '₹140-235' },
+                    { name: 'Tashiding Natural Food', location: 'Near Tashiding Monastery', rating: '4.0', price: '₹125-215' }
+                ],
+                dhindo: [
+                    { name: 'Village Kitchen', location: 'Gangtok', rating: '4.0', price: '₹80-150' },
+                    { name: 'Mountain Food', location: 'Pelling', rating: '3.9', price: '₹70-130' },
+                    { name: 'Local Dhaba', location: 'Yuksom', rating: '4.1', price: '₹60-120' },
+                    { name: 'Rumtek Village Kitchen', location: 'Near Rumtek Monastery', rating: '4.2', price: '₹75-145' },
+                    { name: 'Enchey Mountain Dhaba', location: 'Near Enchey Monastery', rating: '4.0', price: '₹70-135' },
+                    { name: 'Pemayangtse Local Kitchen', location: 'Near Pemayangtse Monastery', rating: '4.1', price: '₹65-125' },
+                    { name: 'Tashiding Village Food', location: 'Near Tashiding Monastery', rating: '3.9', price: '₹55-115' }
+                ],
+                churpeeningro: [
+                    { name: 'Wild Food Restaurant', location: 'Lachung', rating: '4.4', price: '₹350-500' },
+                    { name: 'Mountain Specialty', location: 'Gangtok', rating: '4.2', price: '₹300-450' },
+                    { name: 'Forest Kitchen', location: 'Pelling', rating: '4.0', price: '₹280-420' },
+                    { name: 'Rumtek Forest Kitchen', location: 'Near Rumtek Monastery', rating: '4.3', price: '₹320-470' },
+                    { name: 'Enchey Wild Food Corner', location: 'Near Enchey Monastery', rating: '4.1', price: '₹290-440' },
+                    { name: 'Pemayangtse Mountain Kitchen', location: 'Near Pemayangtse Monastery', rating: '4.2', price: '₹310-460' },
+                    { name: 'Tashiding Forest Restaurant', location: 'Near Tashiding Monastery', rating: '4.0', price: '₹270-410' }
+                ],
+                saelroti: [
+                    { name: 'Festival Kitchen', location: 'Gangtok', rating: '4.3', price: '₹60-120' },
+                    { name: 'Sweet Corner', location: 'Namchi', rating: '4.1', price: '₹50-100' },
+                    { name: 'Traditional Sweets', location: 'Pelling', rating: '4.2', price: '₹55-110' },
+                    { name: 'Rumtek Festival Sweets', location: 'Near Rumtek Monastery', rating: '4.4', price: '₹55-115' },
+                    { name: 'Enchey Sweet Kitchen', location: 'Near Enchey Monastery', rating: '4.2', price: '₹50-105' },
+                    { name: 'Pemayangtse Festival Corner', location: 'Near Pemayangtse Monastery', rating: '4.3', price: '₹52-108' },
+                    { name: 'Tashiding Traditional Sweets', location: 'Near Tashiding Monastery', rating: '4.1', price: '₹48-102' }
+                ],
+                sukuti: [
+                    { name: 'Meat Shop', location: 'Gangtok', rating: '4.2', price: '₹400-600' },
+                    { name: 'Mountain Jerky', location: 'Lachung', rating: '4.4', price: '₹450-650' },
+                    { name: 'Local Butcher', location: 'Pelling', rating: '4.0', price: '₹380-580' },
+                    { name: 'Rumtek Meat Corner', location: 'Near Rumtek Monastery', rating: '4.3', price: '₹420-620' },
+                    { name: 'Enchey Mountain Jerky', location: 'Near Enchey Monastery', rating: '4.1', price: '₹390-590' },
+                    { name: 'Pemayangtse Meat Shop', location: 'Near Pemayangtse Monastery', rating: '4.2', price: '₹410-610' },
+                    { name: 'Tashiding Local Butcher', location: 'Near Tashiding Monastery', rating: '4.0', price: '₹370-570' }
+                ]
+            };
+
+            document.querySelectorAll('.places-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const dish = button.dataset.dish;
+                    showPlacesModal(dish, placesData[dish] || []);
+                });
+            });
+
+            function showPlacesModal(dishName, places) {
+                const modal = document.createElement('div');
+                modal.className = 'places-modal';
+                modal.innerHTML = `
+                    <div class="places-modal-content">
+                        <span class="places-close">&times;</span>
+                        <h2><i class="fas fa-map-marker-alt"></i> Where to find ${dishName.charAt(0).toUpperCase() + dishName.slice(1)}</h2>
+                        <div class="places-list">
+                            ${places.map(place => `
+                                <div class="place-item">
+                                    <div class="place-info">
+                                        <h3>${place.name}</h3>
+                                        <p><i class="fas fa-map-marker-alt"></i> ${place.location}</p>
+                                        <div class="place-details">
+                                            <span class="rating"><i class="fas fa-star"></i> ${place.rating}</span>
+                                            <span class="price">${place.price}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    .places-modal {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.8);
+                        backdrop-filter: blur(15px);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 10000;
+                        opacity: 0;
+                        animation: fadeIn 0.3s ease forwards;
+                    }
+                    
+                    .places-modal-content {
+                        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+                        backdrop-filter: blur(40px) saturate(200%);
+                        border: 2px solid rgba(6, 182, 212, 0.4);
+                        border-radius: 25px;
+                        padding: 30px;
+                        max-width: 500px;
+                        width: 90%;
+                        max-height: 80vh;
+                        overflow-y: auto;
+                        position: relative;
+                        transform: scale(0.8);
+                        animation: scaleIn 0.3s ease 0.1s forwards;
+                        box-shadow: 0 30px 80px rgba(6, 182, 212, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                    }
+                    
+                    .places-close {
+                        position: absolute;
+                        top: 15px;
+                        right: 20px;
+                        font-size: 28px;
+                        color: #06b6d4;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: rgba(6, 182, 212, 0.1);
+                    }
+                    
+                    .places-close:hover {
+                        transform: rotate(90deg) scale(1.1);
+                        background: rgba(6, 182, 212, 0.2);
+                        color: #0891b2;
+                    }
+                    
+                    .places-modal h2 {
+                        color: #06b6d4;
+                        text-align: center;
+                        margin-bottom: 25px;
+                        font-size: 1.5rem;
+                        text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+                    }
+                    
+                    .places-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                    }
+                    
+                    .place-item {
+                        background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.05));
+                        backdrop-filter: blur(15px) saturate(150%);
+                        border: 1px solid rgba(6, 182, 212, 0.3);
+                        border-radius: 15px;
+                        padding: 20px;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 8px 25px rgba(6, 182, 212, 0.1);
+                    }
+                    
+                    .place-item:hover {
+                        border-color: rgba(6, 182, 212, 0.5);
+                        transform: translateY(-3px);
+                        box-shadow: 0 15px 35px rgba(6, 182, 212, 0.2);
+                        background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(6, 182, 212, 0.08));
+                    }
+                    
+                    .place-info h3 {
+                        color: #06b6d4;
+                        margin-bottom: 8px;
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                    }
+                    
+                    .place-info p {
+                        color: rgba(30, 41, 59, 0.9);
+                        margin-bottom: 10px;
+                    }
+                    
+                    .place-details {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    
+                    .rating {
+                        color: #06b6d4;
+                        font-weight: 500;
+                    }
+                    
+                    .price {
+                        color: #0891b2;
+                        font-weight: 600;
+                    }
+                    
+                    @keyframes fadeIn {
+                        to { opacity: 1; }
+                    }
+                    
+                    @keyframes scaleIn {
+                        to { transform: scale(1); }
+                    }
+                `;
+                
+                document.head.appendChild(style);
+                
+                modal.querySelector('.places-close').onclick = () => {
+                    modal.style.opacity = '0';
+                    setTimeout(() => {
+                        document.body.removeChild(modal);
+                        document.head.removeChild(style);
+                    }, 300);
+                };
+                
+                modal.onclick = (e) => {
+                    if (e.target === modal) {
+                        modal.style.opacity = '0';
+                        setTimeout(() => {
+                            document.body.removeChild(modal);
+                            document.head.removeChild(style);
+                        }, 300);
+                    }
+                };
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

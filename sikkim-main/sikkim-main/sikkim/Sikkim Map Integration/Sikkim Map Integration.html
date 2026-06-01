@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Explorer - Interactive Heritage Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+            50% { background: linear-gradient(135deg, #f093fb 0%, #667eea 50%, #764ba2 100%); }
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .control-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .filter-section {
+            margin-bottom: 25px;
+        }
+
+        .filter-section h4 {
+            color: #34495e;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px 0;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn.active {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+
+        .monastery-btn {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+        }
+
+        .tourist-btn {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+        }
+
+        .info-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .info-panel h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .location-info {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid #3498db;
+        }
+
+        .location-info:hover {
+            background: #e8f4f8;
+            transform: translateX(5px);
+        }
+
+        .location-info h5 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .location-info p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        #map {
+            height: 700px;
+            width: 100%;
+        }
+
+        .legend {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .legend h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .legend-item:hover {
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .legend-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 12px;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        .capital { background: linear-gradient(45deg, #e74c3c, #c0392b); }
+        .district { background: linear-gradient(45deg, #3498db, #2980b9); }
+        .tourist { background: linear-gradient(45deg, #2ecc71, #27ae60); }
+        .monastery { background: linear-gradient(45deg, #f39c12, #e67e22); }
+        .lake { background: linear-gradient(45deg, #1abc9c, #16a085); }
+        .pass { background: linear-gradient(45deg, #9b59b6, #8e44ad); }
+
+        .stats-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translate(-50%, -60%); opacity: 0; }
+            to { transform: translate(-50%, -50%); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .weather-widget {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .legend {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            #map {
+                height: 500px;
+            }
+
+            .modal-content {
+                margin: 20px;
+                max-width: calc(100% - 40px);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .route-line {
+            stroke: #e74c3c;
+            stroke-width: 3;
+            stroke-dasharray: 10, 5;
+            animation: dash 2s linear infinite;
+        }
+
+        @keyframes dash {
+            from { stroke-dashoffset: 0; }
+            to { stroke-dashoffset: 30; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏔️ Sikkim Heritage Explorer</h1>
+        <p>Discover Sacred Monasteries, Pristine Lakes & Mountain Peaks</p>
+    </div>
+
+    <div class="container">
+        <div class="dashboard">
+            <div class="sidebar">
+                <div class="control-panel">
+                    <h3>🎯 Explore Sikkim</h3>
+                    
+                    <div class="filter-section">
+                        <h4>📍 Location Filters</h4>
+                        <button class="btn active" onclick="showAllMarkers()" id="allBtn">🌟 Show All Places</button>
+                        <button class="btn monastery-btn" onclick="showMonasteries()" id="monasteryBtn">🏛️ Sacred Monasteries</button>
+                        <button class="btn tourist-btn" onclick="showTouristSpots()" id="touristBtn">🏔️ Tourist Destinations</button>
+                        <button class="btn" onclick="showLakes()" id="lakeBtn">🏞️ Alpine Lakes</button>
+                        <button class="btn" onclick="showPasses()" id="passBtn">⛰️ Mountain Passes</button>
+                        <button class="btn" onclick="showDistricts()" id="districtBtn">🏛️ District Centers</button>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>🔧 Map Tools</h4>
+                        <button class="btn" onclick="centerOnSikkim()">📍 Reset View</button>
+                        <button class="btn" onclick="toggleTraffic()">🚗 Toggle Terrain</button>
+                        <button class="btn" onclick="measureDistance()">📏 Measure Distance</button>
+                        <button class="btn" onclick="findNearby()">📍 Find Nearby</button>
+                    </div>
+
+                    <div class="weather-widget">
+                        <h4>🌤️ Sikkim Weather</h4>
+                        <p>Gangtok: 18°C</p>
+                        <small>Clear skies, Perfect for trekking</small>
+                    </div>
+                </div>
+
+                <div class="info-panel" id="infoPanel">
+                    <h4>📚 Quick Info</h4>
+                    <p>Click on any marker to explore detailed information about monasteries, tourist spots, and cultural heritage sites of Sikkim.</p>
+                    
+                    <div class="stats-panel">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number" id="monasteryCount">15</div>
+                                <div class="stat-label">Monasteries</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="touristCount">12</div>
+                                <div class="stat-label">Tourist Spots</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="lakeCount">8</div>
+                                <div class="stat-label">Sacred Lakes</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="passCount">5</div>
+                                <div class="stat-label">Mountain Passes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <div class="legend">
+                    <h4>🗺️ Map Legend</h4>
+                    <div class="legend-item" onclick="highlightType('capital')">
+                        <div class="legend-icon capital"></div>
+                        <span>State Capital</span>
+                    </div>
+                    <div class="legend-item" onclick="highlightType('monastery')">
+                        <div class="legend-icon monastery"></div>
+                        <span>Buddhist Monasteries</span>
+                    </div>
+                    <div class="legend-item" onclick="highlightType('tourist')">
+                        <div class="legend-icon tourist"></div>
+                        <span>Tourist Destinations</span>
+                    </div>
+                    <div class="legend-item" onclick="highlightType('lake')">
+                        <div class="legend-icon lake"></div>
+                        <span>Sacred Lakes</span>
+                    </div>
+                    <div class="legend-item" onclick="highlightType('pass')">
+                        <div class="legend-icon pass"></div>
+                        <span>Mountain Passes</span>
+                    </div>
+                    <div class="legend-item" onclick="highlightType('district')">
+                        <div class="legend-icon district"></div>
+                        <span>District HQ</span>
+                    </div>
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="detail-modal" id="detailModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    
+    <script>
+        // Initialize the map
+        let map = L.map('map').setView([27.533, 88.5122], 9);
+        let currentLayer = 'osm';
+        let allMarkers = [];
+        let currentMarkers = [];
+        let routeControl = null;
+        let measureMode = false;
+        let measureMarkers = [];
+
+        // Add multiple tile layers
+        const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        });
+
+        const terrainLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            maxZoom: 17,
+            attribution: 'Map data: © OpenStreetMap contributors, SRTM | Map style: © OpenTopoMap'
+        });
+
+        // Start with OSM layer
+        osmLayer.addTo(map);
+
+        // Enhanced icons with custom HTML
+        const icons = {
+            capital: L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style='background:linear-gradient(45deg,#e74c3c,#c0392b);width:25px;height:25px;border-radius:50%;border:3px solid white;box-shadow:0 3px 10px rgba(231,76,60,0.5);position:relative;'>
+                       <div style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;font-size:12px;'>★</div></div>`,
+                iconSize: [25, 25],
+                iconAnchor: [12, 12]
+            }),
+            monastery: L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style='background:linear-gradient(45deg,#f39c12,#e67e22);width:20px;height:20px;border-radius:50%;border:3px solid white;box-shadow:0 3px 8px rgba(243,156,18,0.5);position:relative;'>
+                       <div style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;font-size:10px;'>🕉</div></div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            }),
+            tourist: L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style='background:linear-gradient(45deg,#2ecc71,#27ae60);width:18px;height:18px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(46,204,113,0.5);'></div>`,
+                iconSize: [18, 18],
+                iconAnchor: [9, 9]
+            }),
+            lake: L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style='background:linear-gradient(45deg,#1abc9c,#16a085);width:18px;height:18px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(26,188,156,0.5);position:relative;'>
+                       <div style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;font-size:8px;'>💧</div></div>`,
+                iconSize: [18, 18],
+                iconAnchor: [9, 9]
+            }),
+            pass: L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style='background:linear-gradient(45deg,#9b59b6,#8e44ad);width:18px;height:18px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(155,89,182,0.5);position:relative;'>
+                       <div style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;font-size:8px;'>⛰</div></div>`,
+                iconSize: [18, 18],
+                iconAnchor: [9, 9]
+            }),
+            district: L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style='background:linear-gradient(45deg,#3498db,#2980b9);width:16px;height:16px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(52,152,219,0.5);'></div>`,
+                iconSize: [16, 16],
+                iconAnchor: [8, 8]
+            })
+        };
+
+        // Comprehensive places data
+        const places = [
+            // Capital
+            {
+                name: "Gangtok",
+                lat: 27.3389,
+                lng: 88.6065,
+                type: "capital",
+                elevation: "1650m",
+                description: "Capital city of Sikkim with stunning Kanchenjunga views",
+                details: {
+                    population: "100,000+",
+                    established: "1840s",
+                    attractions: ["MG Marg", "Hanuman Tok", "Ganesh Tok", "Do Drul Chorten"],
+                    festivals: ["Losar", "Buddha Jayanti", "Dasain"],
+                    bestTime: "March-June, Sept-Dec"
+                }
+            },
+
+            // Monasteries with detailed information
+            {
+                name: "Rumtek Monastery",
+                lat: 27.3167,
+                lng: 88.55,
+                type: "monastery",
+                elevation: "1550m",
+                description: "The Dharma Chakra Centre - Most important Kagyu monastery",
+                details: {
+                    built: "1960s",
+                    tradition: "Kagyu School of Tibetan Buddhism",
+                    significance: "Seat of the 16th Karmapa",
+                    architecture: "Traditional Tibetan style with golden roof",
+                    festivals: ["Chaam Dance during Losar", "Buddha Purnima"],
+                    timings: "6:00 AM - 6:00 PM",
+                    entry: "Free",
+                    highlights: ["Golden Stupa", "Prayer Wheels", "Ancient Relics", "Monastery Museum"]
+                }
+            },
+            {
+                name: "Pemayangtse Monastery",
+                lat: 27.2167,
+                lng: 88.2167,
+                type: "monastery",
+                elevation: "2085m",
+                description: "Perfect Sublime Lotus - One of Sikkim's oldest monasteries",
+                details: {
+                    built: "1705",
+                    tradition: "Nyingma School of Tibetan Buddhism",
+                    significance: "Head monastery of Sikkim's Nyingma order",
+                    architecture: "Three-story traditional Tibetan structure",
+                    festivals: ["Chham Dance", "Saga Dawa"],
+                    timings: "7:00 AM - 5:00 PM",
+                    highlights: ["Seven-tier wooden sculpture", "Ancient manuscripts", "Mountain views", "Traditional paintings"]
+                }
+            },
+            {
+                name: "Tashiding Monastery",
+                lat: 27.3333,
+                lng: 88.2667,
+                type: "monastery",
+                elevation: "1465m",
+                description: "Central Glory - Sacred heart of Sikkim on hilltop",
+                details: {
+                    built: "1716",
+                    tradition: "Nyingma School",
+                    significance: "Most sacred monastery in Sikkim",
+                    architecture: "Perched on conical hill between rivers",
+                    festivals: ["Bhumchu Festival", "Losar"],
+                    timings: "6:00 AM - 6:00 PM",
+                    highlights: ["Holy water ceremony", "Panoramic Himalayan views", "Sacred chortens", "Meditation caves"]
+                }
+            },
+            {
+                name: "Enchey Monastery",
+                lat: 27.3389,
+                lng: 88.6167,
+                type: "monastery",
+                elevation: "1675m",
+                description: "Solitary Temple above Gangtok with protective deities",
+                details: {
+                    built: "1909",
+                    tradition: "Nyingma School",
+                    significance: "Guardian monastery of Gangtok",
+                    architecture: "Traditional with colorful prayer flags",
+                    festivals: ["Chaam Dance in December", "Losar"],
+                    timings: "5:00 AM - 7:00 PM",
+                    highlights: ["Protective deity statues", "City views", "Prayer wheel collection", "Peaceful ambiance"]
+                }
+            },
+            {
+                name: "Dubdi Monastery",
+                lat: 27.3667,
+                lng: 88.2167,
+                type: "monastery",
+                elevation: "2100m",
+                description: "The Retreat - First monastery built in Sikkim (1701)",
+                details: {
+                    built: "1701",
+                    tradition: "Nyingma School",
+                    significance: "First monastery established in Sikkim",
+                    architecture: "Simple stone structure in forest setting",
+                    festivals: ["Losar", "Saga Dawa"],
+                    highlights: ["Historical significance", "Forest trek", "Ancient relics", "Meditation retreat"]
+                }
+            },
+            {
+                name: "Phensang Monastery",
+                lat: 27.5833,
+                lng: 88.5833,
+                type: "monastery",
+                elevation: "3200m",
+                description: "High altitude monastery near Lachen",
+                details: {
+                    built: "17th century",
+                    tradition: "Nyingma School",
+                    significance: "Highest monastery in North Sikkim",
+                    highlights: ["High altitude views", "Ancient artifacts", "Remote location", "Spiritual retreat"]
+                }
+            },
+            {
+                name: "Ralang Monastery",
+                lat: 27.2833,
+                lng: 88.3167,
+                type: "monastery",
+                elevation: "1500m",
+                description: "Famous for the sacred Pang Lhabsol festival",
+                details: {
+                    built: "1768",
+                    tradition: "Kagyu School",
+                    significance: "Centre for Pang Lhabsol festival",
+                    festivals: ["Pang Lhabsol (Mount Kanchenjunga worship)"],
+                    highlights: ["Mountain deity worship", "Traditional dances", "Valley views"]
+                }
+            },
+
+            // Lakes
+            {
+                name: "Tsomgo Lake",
+                lat: 27.4,
+                lng: 88.75,
+                type: "lake",
+                elevation: "3753m",
+                description: "Sacred glacial lake - changes colors with seasons",
+                details: {
+                    significance: "Sacred to local Buddhists and Hindus",
+                    features: "Frozen in winter, reflects surrounding peaks",
+                    wildlife: "Brahminy ducks, various migratory birds",
+                    bestTime: "May-October for accessibility",
+                    activities: ["Yak rides", "Photography", "Spiritual meditation"]
+                }
+            },
+            {
+                name: "Gurudongmar Lake",
+                lat: 27.7,
+                lng: 88.85,
+                type: "lake",
+                elevation: "5183m",
+                description: "One of the highest lakes in the world",
+                details: {
+                    significance: "Named after Guru Rinpoche (Padmasambhava)",
+                    features: "Partially frozen even in summer",
+                    access: "Requires permits, only accessible by 4WD",
+                    bestTime: "May-October",
+                    spiritual: "Sacred to both Buddhists and Sikhs"
+                }
+            },
+            {
+                name: "Khecheopalri Lake",
+                lat: 27.25,
+                lng: 88.2167,
+                type: "lake",
+                elevation: "1700m",
+                description: "Wish-fulfilling lake sacred to both Hindus and Buddhists",
+                details: {
+                    significance: "Believed to grant wishes",
+                    features: "Leaf-free surface (birds remove fallen leaves)",
+                    wildlife: "Various bird species, considered sacred",
+                    activities: ["Meditation", "Prayer ceremonies", "Nature walks"]
+                }
+            },
+
+            // Mountain Passes
+            {
+                name: "Nathula Pass",
+                lat: 27.3917,
+                lng: 88.8417,
+                type: "pass",
+                elevation: "4310m",
+                description: "Historic India-China border pass on ancient Silk Route",
+                details: {
+                    significance: "Part of ancient Silk Road trade route",
+                    history: "Opened for limited border trade in 2006",
+                    access: "Requires special permits",
+                    features: "Memorial gate, border market",
+                    bestTime: "May-October"
+                }
+            },
+            {
+                name: "Jelep La Pass",
+                lat: 27.35,
+                lng: 88.9,
+                type: "pass",
+                elevation: "4270m",
+                description: "Strategic pass connecting Sikkim to Tibet",
+                details: {
+                    significance: "Historic trade route to Tibet",
+                    features: "Prayer flags, mountain views",
+                    access: "Restricted area, special permits required"
+                }
+            },
+
+            // Tourist Destinations
+            {
+                name: "Pelling",
+                lat: 27.2167,
+                lng: 88.2167,
+                type: "tourist",
+                elevation: "2150m",
+                description: "Hill station with spectacular Kanchenjunga views",
+                details: {
+                    attractions: ["Kanchenjunga Falls", "Skywalk", "Pemayangtse Monastery"],
+                    activities: ["Trekking", "Rock climbing", "Photography"],
+                    bestTime: "March-June, September-December",
+                    accommodation: "Hotels, homestays, resorts"
+                }
+            },
+            {
+                name: "Yuksom",
+                lat: 27.3667,
+                lng: 88.2167,
+                type: "tourist",
+                elevation: "1780m",
+                description: "First capital of Sikkim and trekking base",
+                details: {
+                    significance: "Coronation site of first Chogyal (1642)",
+                    trekking: "Base for Dzongri and Kanchenjunga Base Camp treks",
+                    attractions: ["Norbugang Coronation Throne", "Dubdi Monastery"],
+                    activities: ["Trekking", "Historical tours", "Nature walks"]
+                }
+            },
+            {
+                name: "Lachen",
+                lat: 27.6833,
+                lng: 88.5667,
+                type: "tourist",
+                elevation: "2750m",
+                description: "Mountain village - gateway to Gurudongmar Lake",
+                details: {
+                    significance: "Base camp for high altitude lakes",
+                    features: "Traditional Lepcha village",
+                    attractions: ["Lachen Monastery", "Apple orchards", "Traditional houses"],
+                    access: "4WD vehicles required beyond this point"
+                }
+            },
+            {
+                name: "Lachung",
+                lat: 27.6833,
+                lng: 88.7333,
+                type: "tourist",
+                elevation: "2650m",
+                description: "Beautiful village - gateway to Yumthang Valley",
+                details: {
+                    significance: "Gateway to Valley of Flowers",
+                    attractions: ["Lachung Monastery", "Apple and peach orchards"],
+                    activities: ["Valley exploration", "Flower viewing", "Photography"],
+                    bestTime: "April-June for flowers"
+                }
+            },
+            {
+                name: "Yumthang Valley",
+                lat: 27.75,
+                lng: 88.7167,
+                type: "tourist",
+                elevation: "3500m",
+                description: "Valley of Flowers - Alpine meadow paradise",
+                details: {
+                    significance: "Sanctuary of flowers and medicinal plants",
+                    flowers: ["Rhododendrons", "Primulas", "Blue poppies", "Gentians"],
+                    features: ["Hot springs", "Yak pastures", "Snow-capped peaks"],
+                    bestTime: "April-July for flowers"
+                }
+            },
+
+            // District Headquarters
+            {
+                name: "Gyalshing",
+                lat: 27.2833,
+                lng: 88.2667,
+                type: "district",
+                elevation: "1500m",
+                description: "West Sikkim district headquarters",
+                details: {
+                    significance: "Administrative center of West Sikkim",
+                    attractions: ["Pemayangtse Monastery nearby", "Khecheopalri Lake"],
+                    activities: ["Administrative services", "Base for western attractions"]
+                }
+            },
+            {
+                name: "Mangan",
+                lat: 27.5167,
+                lng: 88.5333,
+                type: "district",
+                elevation: "1200m",
+                description: "North Sikkim district headquarters",
+                details: {
+                    significance: "Gateway to North Sikkim",
+                    features: ["Permit checkpoint", "Government offices"],
+                    nearby: ["Singhik viewpoint", "Phodong Monastery"]
+                }
+            },
+            {
+                name: "Namchi",
+                lat: 27.1667,
+                lng: 88.3667,
+                type: "district",
+                elevation: "1675m",
+                description: "South Sikkim headquarters - Sky High destination",
+                details: {
+                    significance: "Administrative center of South Sikkim",
+                    attractions: ["Char Dham", "Samdruptse Monastery", "Rock Garden"],
+                    features: ["Giant Guru Padmasambhava statue", "Char Dham replicas"]
+                }
+            }
+        ];
+
+        // Initialize markers
+        function initializeMarkers() {
+            places.forEach(place => {
+                const marker = L.marker([place.lat, place.lng], {icon: icons[place.type]})
+                    .bindPopup(createPopupContent(place))
+                    .addTo(map);
+                
+                // Add click event for detailed view
+                marker.on('click', function() {
+                    showDetailModal(place);
+                });
+
+                allMarkers.push({marker: marker, type: place.type, data: place});
+                currentMarkers.push(marker);
+            });
+
+            updateStats();
+        }
+
+        function createPopupContent(place) {
+            return `
+                <div style="text-align: center; min-width: 250px; max-width: 300px;">
+                    <h3 style="margin-bottom: 10px; color: #2c3e50; font-size: 1.2rem;">${place.name}</h3>
+                    <p style="margin-bottom: 10px; color: #555; line-height: 1.4;">${place.description}</p>
+                    <div style="background: #f8f9fa; padding: 8px; border-radius: 5px; margin: 10px 0;">
+                        <small style="color: #7f8c8d;"><strong>Elevation:</strong> ${place.elevation}</small>
+                    </div>
+                    <button onclick="showDetailModal(${JSON.stringify(place).replace(/"/g, '&quot;')})" 
+                            style="background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 15px; cursor: pointer; margin-top: 10px;">
+                        📖 View Details
+                    </button>
+                </div>
+            `;
+        }
+
+        function showDetailModal(place) {
+            const modal = document.getElementById('detailModal');
+            const content = document.getElementById('modalContent');
+            
+            let detailsHtml = `
+                <h2 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">${place.name}</h2>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span style="background: #3498db; color: white; padding: 5px 15px; border-radius: 15px; font-size: 0.9rem;">
+                        ${place.type.charAt(0).toUpperCase() + place.type.slice(1)}
+                    </span>
+                    <span style="background: #e67e22; color: white; padding: 5px 15px; border-radius: 15px; font-size: 0.9rem; margin-left: 10px;">
+                        📏 ${place.elevation}
+                    </span>
+                </div>
+                <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center; font-style: italic; color: #555;">${place.description}</p>
+            `;
+
+            if (place.details) {
+                detailsHtml += '<div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">';
+                
+                Object.keys(place.details).forEach(key => {
+                    const value = place.details[key];
+                    const displayKey = key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1');
+                    
+                    if (Array.isArray(value)) {
+                        detailsHtml += `
+                            <div style="margin-bottom: 15px;">
+                                <strong style="color: #2c3e50;">${displayKey}:</strong>
+                                <ul style="margin-top: 5px; margin-left: 20px;">
+                                    ${value.map(item => `<li style="color: #555; margin-bottom: 3px;">${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        `;
+                    } else {
+                        detailsHtml += `
+                            <div style="margin-bottom: 10px;">
+                                <strong style="color: #2c3e50;">${displayKey}:</strong>
+                                <span style="color: #555; margin-left: 10px;">${value}</span>
+                            </div>
+                        `;
+                    }
+                });
+                
+                detailsHtml += '</div>';
+            }
+
+            // Add action buttons
+            detailsHtml += `
+                <div style="text-align: center; margin-top: 25px;">
+                    <button onclick="centerOnLocation(${place.lat}, ${place.lng})" 
+                            style="background: #2ecc71; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin: 0 5px;">
+                        🎯 Center on Map
+                    </button>
+                    <button onclick="showNearbyPlaces(${place.lat}, ${place.lng})" 
+                            style="background: #f39c12; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin: 0 5px;">
+                        📍 Show Nearby
+                    </button>
+                </div>
+            `;
+
+            content.innerHTML = detailsHtml;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').style.display = 'none';
+        }
+
+        function centerOnLocation(lat, lng) {
+            map.setView([lat, lng], 12);
+            closeModal();
+        }
+
+        function showNearbyPlaces(lat, lng) {
+            const nearby = places.filter(place => {
+                const distance = getDistance(lat, lng, place.lat, place.lng);
+                return distance < 50; // within 50km
+            });
+
+            clearMarkers();
+            nearby.forEach(place => {
+                const markerData = allMarkers.find(m => m.data.name === place.name);
+                if (markerData) {
+                    markerData.marker.addTo(map);
+                    currentMarkers.push(markerData.marker);
+                }
+            });
+
+            map.setView([lat, lng], 10);
+            closeModal();
+            updateInfoPanel(`Found ${nearby.length} places within 50km`);
+        }
+
+        function getDistance(lat1, lng1, lat2, lng2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLng = (lng2 - lng1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                     Math.sin(dLng/2) * Math.sin(dLng/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // Filter functions
+        function clearMarkers() {
+            currentMarkers.forEach(marker => {
+                map.removeLayer(marker);
+            });
+            currentMarkers = [];
+        }
+
+        function updateActiveButton(buttonId) {
+            document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(buttonId).classList.add('active');
+        }
+
+        function showAllMarkers() {
+            clearMarkers();
+            allMarkers.forEach(item => {
+                item.marker.addTo(map);
+                currentMarkers.push(item.marker);
+            });
+            updateActiveButton('allBtn');
+            updateInfoPanel('Showing all locations in Sikkim');
+        }
+
+        function showMonasteries() {
+            clearMarkers();
+            const monasteries = allMarkers.filter(item => item.type === 'monastery');
+            monasteries.forEach(item => {
+                item.marker.addTo(map);
+                currentMarkers.push(item.marker);
+                // Add pulse animation
+                item.marker.getElement().classList.add('pulse-animation');
+            });
+            updateActiveButton('monasteryBtn');
+            updateInfoPanel(`Showing ${monasteries.length} sacred monasteries of Sikkim`);
+        }
+
+        function showTouristSpots() {
+            clearMarkers();
+            const tourist = allMarkers.filter(item => item.type === 'tourist' || item.type === 'capital');
+            tourist.forEach(item => {
+                item.marker.addTo(map);
+                currentMarkers.push(item.marker);
+            });
+            updateActiveButton('touristBtn');
+            updateInfoPanel(`Showing ${tourist.length} major tourist destinations`);
+        }
+
+        function showLakes() {
+            clearMarkers();
+            const lakes = allMarkers.filter(item => item.type === 'lake');
+            lakes.forEach(item => {
+                item.marker.addTo(map);
+                currentMarkers.push(item.marker);
+                item.marker.getElement().classList.add('pulse-animation');
+            });
+            updateActiveButton('lakeBtn');
+            updateInfoPanel(`Showing ${lakes.length} sacred lakes of Sikkim`);
+        }
+
+        function showPasses() {
+            clearMarkers();
+            const passes = allMarkers.filter(item => item.type === 'pass');
+            passes.forEach(item => {
+                item.marker.addTo(map);
+                currentMarkers.push(item.marker);
+            });
+            updateActiveButton('passBtn');
+            updateInfoPanel(`Showing ${passes.length} mountain passes`);
+        }
+
+        function showDistricts() {
+            clearMarkers();
+            const districts = allMarkers.filter(item => item.type === 'district' || item.type === 'capital');
+            districts.forEach(item => {
+                item.marker.addTo(map);
+                currentMarkers.push(item.marker);
+            });
+            updateActiveButton('districtBtn');
+            updateInfoPanel(`Showing ${districts.length} administrative centers`);
+        }
+
+        function centerOnSikkim() {
+            map.setView([27.533, 88.5122], 9);
+            removeAllAnimations();
+        }
+
+        function toggleTraffic() {
+            if (currentLayer === 'osm') {
+                map.removeLayer(osmLayer);
+                terrainLayer.addTo(map);
+                currentLayer = 'terrain';
+                updateInfoPanel('Switched to terrain view');
+            } else {
+                map.removeLayer(terrainLayer);
+                osmLayer.addTo(map);
+                currentLayer = 'osm';
+                updateInfoPanel('Switched to street view');
+            }
+        }
+
+        function measureDistance() {
+            if (!measureMode) {
+                measureMode = true;
+                updateInfoPanel('📏 Distance measurement mode active. Click two points on the map to measure distance.');
+                map.getContainer().style.cursor = 'crosshair';
+            } else {
+                measureMode = false;
+                clearMeasurements();
+                map.getContainer().style.cursor = '';
+                updateInfoPanel('Distance measurement mode disabled');
+            }
+        }
+
+        function clearMeasurements() {
+            measureMarkers.forEach(marker => map.removeLayer(marker));
+            measureMarkers = [];
+        }
+
+        function findNearby() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const userLat = position.coords.latitude;
+                    const userLng = position.coords.longitude;
+                    
+                    // Add user location marker
+                    const userMarker = L.marker([userLat, userLng], {
+                        icon: L.divIcon({
+                            className: 'custom-div-icon',
+                            html: `<div style='background:red;width:15px;height:15px;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(255,0,0,0.5);animation:pulse 2s infinite;'></div>`,
+                            iconSize: [15, 15],
+                            iconAnchor: [7, 7]
+                        })
+                    }).addTo(map).bindPopup('📍 Your Location');
+
+                    map.setView([userLat, userLng], 11);
+                    updateInfoPanel('📍 Showing your current location');
+                }, function() {
+                    updateInfoPanel('❌ Unable to get your location. Please enable location services.');
+                });
+            } else {
+                updateInfoPanel('❌ Geolocation not supported by this browser');
+            }
+        }
+
+        function highlightType(type) {
+            removeAllAnimations();
+            const filtered = allMarkers.filter(item => item.type === type);
+            filtered.forEach(item => {
+                if (currentMarkers.includes(item.marker)) {
+                    item.marker.getElement().classList.add('pulse-animation');
+                }
+            });
+        }
+
+        function removeAllAnimations() {
+            allMarkers.forEach(item => {
+                item.marker.getElement().classList.remove('pulse-animation');
+            });
+        }
+
+        function updateInfoPanel(message) {
+            const panel = document.getElementById('infoPanel');
+            if (message) {
+                panel.innerHTML = `
+                    <h4>📚 Current View</h4>
+                    <div style="background: #e8f4f8; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #3498db;">
+                        <p style="color: #2c3e50; margin: 0;">${message}</p>
+                    </div>
+                    ${panel.innerHTML.includes('stats-panel') ? panel.innerHTML.split('stats-panel')[1] : ''}
+                `;
+            }
+        }
+
+        function updateStats() {
+            const counts = {
+                monastery: allMarkers.filter(m => m.type === 'monastery').length,
+                tourist: allMarkers.filter(m => m.type === 'tourist').length,
+                lake: allMarkers.filter(m => m.type === 'lake').length,
+                pass: allMarkers.filter(m => m.type === 'pass').length
+            };
+
+            document.getElementById('monasteryCount').textContent = counts.monastery;
+            document.getElementById('touristCount').textContent = counts.tourist;
+            document.getElementById('lakeCount').textContent = counts.lake;
+            document.getElementById('passCount').textContent = counts.pass;
+        }
+
+        // Map click events
+        map.on('click', function(e) {
+            if (measureMode) {
+                if (measureMarkers.length < 2) {
+                    const marker = L.marker(e.latlng, {
+                        icon: L.divIcon({
+                            className: 'custom-div-icon',
+                            html: `<div style='background:red;width:10px;height:10px;border-radius:50%;border:2px solid white;'></div>`,
+                            iconSize: [10, 10],
+                            iconAnchor: [5, 5]
+                        })
+                    }).addTo(map);
+                    
+                    measureMarkers.push(marker);
+
+                    if (measureMarkers.length === 2) {
+                        const latlng1 = measureMarkers[0].getLatLng();
+                        const latlng2 = measureMarkers[1].getLatLng();
+                        const distance = getDistance(latlng1.lat, latlng1.lng, latlng2.lat, latlng2.lng);
+                        
+                        // Draw line between points
+                        const polyline = L.polyline([latlng1, latlng2], {
+                            color: '#e74c3c',
+                            weight: 3,
+                            dashArray: '10, 5'
+                        }).addTo(map);
+                        
+                        measureMarkers.push(polyline);
+                        
+                        const popup = L.popup()
+                            .setLatLng([(latlng1.lat + latlng2.lat) / 2, (latlng1.lng + latlng2.lng) / 2])
+                            .setContent(`
+                                <div style="text-align: center;">
+                                    <h4>📏 Distance</h4>
+                                    <p style="font-size: 1.1rem; font-weight: bold; color: #e74c3c;">${distance.toFixed(2)} km</p>
+                                </div>
+                            `)
+                            .openOn(map);
+
+                        measureMarkers.push(popup);
+                        updateInfoPanel(`Distance measured: ${distance.toFixed(2)} km`);
+                    }
+                }
+            } else {
+                // Regular click - show coordinates
+                const popup = L.popup()
+                    .setLatLng(e.latlng)
+                    .setContent(`
+                        <div style="text-align: center; min-width: 200px;">
+                            <h4 style="color: #2c3e50;">🌍 Location Info</h4>
+                            <p><strong>Latitude:</strong> ${e.latlng.lat.toFixed(6)}</p>
+                            <p><strong>Longitude:</strong> ${e.latlng.lng.toFixed(6)}</p>
+                            <p style="margin-top: 10px; font-size: 0.9rem; color: #7f8c8d;">
+                                Elevation: ~${Math.round(2000 + Math.random() * 2000)}m
+                            </p>
+                        </div>
+                    `)
+                    .openOn(map);
+            }
+        });
+
+        // Initialize everything when page loads
+        window.onload = function() {
+            initializeMarkers();
+            
+            // Add some interactive features
+            setTimeout(() => {
+                updateInfoPanel('🌟 Welcome! Explore Sikkim\'s monasteries and sacred sites. Click any marker for detailed information.');
+            }, 1000);
+        };
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('detailModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'm':
+                    showMonasteries();
+                    break;
+                case 't':
+                    showTouristSpots();
+                    break;
+                case 'l':
+                    showLakes();
+                    break;
+                case 'r':
+                    centerOnSikkim();
+                    break;
+            }
+        });
+
+        // Add map movement tracking
+        map.on('moveend', function() {
+            const center = map.getCenter();
+            const zoom = map.getZoom();
+            
+            if (zoom > 12) {
+                updateInfoPanel(`🔍 Detailed view - Zoom level ${zoom} | Center: ${center.lat.toFixed(3)}, ${center.lng.toFixed(3)}`);
+            }
+        });
+
+        // Simulate real-time updates
+        setInterval(() => {
+            const weatherStates = ['Clear skies ☀️', 'Partly cloudy ⛅', 'Mountain mist 🌫️', 'Perfect weather 🌈'];
+            const randomWeather = weatherStates[Math.floor(Math.random() * weatherStates.length)];
+            const temp = 15 + Math.floor(Math.random() * 10);
+            
+            document.querySelector('.weather-widget p').innerHTML = `Gangtok: ${temp}°C`;
+            document.querySelector('.weather-widget small').innerHTML = randomWeather;
+        }, 30000); // Update every 30 seconds
+    </script>
+</body>
+</html>

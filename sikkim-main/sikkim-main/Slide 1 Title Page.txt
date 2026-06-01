@@ -1,0 +1,39 @@
+Slide 1: Title Page
+(Fill Team ID/Name, Problem Statement ID/Title, etc.)
+
+Slide 2: IDEA TITLE – Monastery360
+Proposed Solution:
+Centralized Digital Hub: Combines virtual tours (360°), AI-powered archives, and smart audio guides.
+For Tourists: Multilingual narrated walkthroughs + offline access.
+For Researchers: Digitized manuscripts/murals with OCR search.
+How It Solves the Problem:
+❌ Current Issue: "Sikkim’s monasteries lack a unified digital presence—info is scattered across generic tourism sites."
+
+✅ Our Fix: "One platform for immersive exploration + preservation."
+
+Innovation:
+🔥 Unique Blend: First to merge VR tours + AI archives + community-driven updates (locals can add content). (Use a comparison infographic vs competitors.)
+
+Slide 3: TECHNICAL APPROACH (Flowchart Image + Keywords)
+🖥️ Tech Stack:
+Frontend: HTML/CSS/JS (Tesseract.js for OCR, Axios API calls) → Lightweight for remote areas.
+Backend/Database : Firebase Firestore (scalable NoSQL) + Cloud Functions.
+🌐 APIs Integrated:
+
+
+plaintext
+1️⃣ Google Maps → Live monastery routes 
+2️⃣ Web Speech API → Audio guides 
+3️⃣ Google Translate → Dynamic multilingual support
+📌 Methodology (Flowchart Below Tech Stack) :
+
+mermaid
+graph LR
+A[Data Collection] --> B(AI Processing)
+B --> C[VR Tour Creation]
+C --> D[User Access via App/Web]
+Slide 4 - FEASIBILITY & VIABILITY
+Challenge	Solution	Metric
+🛑 Internet in remote areas?	Offline-first audio guides (~50MB storage)	
+📜 Data authenticity risks	Partnered with local monks/nuns as verifiers	
+*(Include a mini roadmap timeline image below this table e.g., “Phase 1 Pilot in Rum

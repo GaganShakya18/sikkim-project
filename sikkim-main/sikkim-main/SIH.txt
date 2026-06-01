@@ -1,0 +1,50 @@
+Title Page:
+Problem Statement ID: 25061
+Problem Statement Title: Digitize and Showcase Monasteries of Sikkim for Tourism and Cultural Preservation
+Theme:
+PS category- Software
+Team ID: 
+Team Name: Boolean
+
+Idea Title: Monastery360: A Digital Heritage Platform for Sikkim’s Monasteries
+
+Proposed Solution(Describe your idea/solution/prototype)
+
+
+
+
+
+detailed explanation of the proposed solution
+How it addresses the problem
+Innovation and Uniqueness of the solution
+
+
+Technical Approach:
+Technologies to be used(eg. programming language, framework, hardware)
+
+Methodology and process for implementation (flow chart/ images/ working prototype)
+
+
+
+Feasability and Viability:
+Analysis of the feasibility of the idea
+potential challenges and risks
+Strategies for overcoming these challenges
+
+
+Impact and Benefits:
+Potential impacts on the target audience
+Benefits of the solution(social, economics, environmental etc)
+
+
+Research and References:
+Details/Links of references and research work
+
+
+Instructions
+1.Max slide 6
+2.ideas in points/diagrams/infographics/pictures
+3.explanation precise and easy to understand
+4.Idea should be unique and novel
+
+Upload in PDF format.

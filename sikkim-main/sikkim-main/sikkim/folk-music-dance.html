@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folk Music & Dance - Sikkim</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero-background">
+        <img src="Hemis-Festival, Ladakh.jpeg" alt="Folk Music & Dance">
+        <div class="hero-overlay">
+            <button class="back-btn" onclick="window.location.href='culture.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>Folk Music & Dance</h1>
+            <p>Rhythms of Sikkim</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="item">
+            <img src="Hemis-Festival, Ladakh.jpeg" alt="Cham Dance">
+            <div class="info">
+                <h2>Cham (Mask Dance)</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Cham is a sacred Buddhist dance performed by monks wearing elaborate masks and costumes. It serves as a form of meditation, storytelling, and spiritual purification, believed to ward off evil spirits and bring blessings to the community.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Introduced to Sikkim in the 8th century by Guru Padmasambhava, Cham dance originated in Tibet as a way to spread Buddhist teachings. Each monastery developed its own variations, with movements and masks representing different deities and spiritual concepts.</p>
+                    
+                    <button class="see-more-btn" onclick="showPerformanceGallery('cham')"><i class="fas fa-play-circle"></i> See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="Making of the Prayer Wheel - Sikkim, India.jpeg" alt="Damphu Dance">
+            <div class="info">
+                <h2>Damphu Dance</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>The Damphu dance is performed with traditional drums during festivals and celebrations. It represents the heartbeat of Sikkimese culture, bringing communities together and preserving the rhythmic traditions of the Tamang people.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Originating from the Tamang community of Nepal and Tibet, this dance form came to Sikkim with early settlers. The damphu drum, made from sheepskin, creates distinctive rhythms that have been passed down through generations for over 200 years.</p>
+                    
+                    <button class="see-more-btn" onclick="showPerformanceGallery('damphu')"><i class="fas fa-play-circle"></i> See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="download (2).jpeg" alt="Lepcha Folk Songs">
+            <div class="info">
+                <h2>Lepcha Folk Songs</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Lepcha folk songs preserve the oral history and cultural identity of Sikkim's indigenous people. These melodic narratives tell stories of nature, love, and ancestral wisdom, maintaining the connection between past and present generations.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>As the original inhabitants of Sikkim, the Lepcha people developed their musical traditions over millennia. Their songs, sung in the Lepcha language, reflect their deep spiritual connection with nature and have been orally transmitted for thousands of years.</p>
+                    
+                    <button class="see-more-btn" onclick="showPerformanceGallery('lepcha')"><i class="fas fa-play-circle"></i> See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="Lepcha traditional house.jpeg" alt="Maruni Dance">
+            <div class="info">
+                <h2>Maruni Dance</h2>
+                <div class="details">
+                    <h3>Importance</h3>
+                    <p>Maruni is a traditional Nepali folk dance performed during Tihar festival, celebrating the victory of good over evil. It involves graceful movements and storytelling through dance, often performed by women in colorful traditional attire.</p>
+                    
+                    <h3>Origins & History</h3>
+                    <p>Brought to Sikkim by Nepali settlers in the 19th century, Maruni dance has ancient roots in Hindu mythology. The dance depicts stories of gods and goddesses, particularly focusing on themes of devotion, courage, and divine intervention.</p>
+                    
+                    <button class="see-more-btn" onclick="showPerformanceGallery('maruni')"><i class="fas fa-play-circle"></i> See More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; overflow-x: hidden; }
+        .hero-background { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; }
+        .hero-background img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+        .back-btn { position: absolute; top: 30px; left: 30px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 18px; backdrop-filter: blur(10px); }
+        .hero-overlay h1 { font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .hero-overlay p { font-size: 1.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+        .content { position: relative; z-index: 2; margin-top: 100vh; background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%); backdrop-filter: blur(30px) saturate(180%); padding: 60px 40px; border-radius: 30px 30px 0 0; border: 1px solid rgba(6, 182, 212, 0.2); box-shadow: 0 -20px 60px rgba(6, 182, 212, 0.2); }
+        .item { display: flex; margin-bottom: 80px; opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
+        .item.visible { opacity: 1; transform: translateY(0); }
+        .item:nth-child(even) { flex-direction: row-reverse; }
+        .item img { width: 350px; height: 400px; object-fit: cover; border-radius: 15px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; }
+        .item:hover img { transform: scale(1.05); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5); }
+        .info { padding: 40px; flex: 1; display: flex; flex-direction: column; }
+        .info h2 { font-size: 2.5rem; color: #1e293b; margin-bottom: 30px; text-shadow: 3px 3px 6px rgba(6, 182, 212, 0.3); font-weight: 700; }
+        .details h3 { font-size: 1.4rem; color: #06b6d4; margin-bottom: 15px; margin-top: 25px; font-weight: 600; }
+        .details h3:first-child { margin-top: 0; }
+        .details p { font-size: 1.1rem; line-height: 1.7; color: rgba(30, 41, 59, 0.9); text-align: justify; margin-bottom: 20px; }
+        .see-more-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .see-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        .performance-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .performance-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+
+        .performance-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .performance-content h3 {
+            color: #ef4444;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .video-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 60px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .video-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .video-placeholder h4 {
+            margin-bottom: 10px;
+        }
+
+        .video-placeholder p {
+            opacity: 0.9;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .media-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .media-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .experience-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .experience-section h4 {
+            color: #ef4444;
+            margin-bottom: 15px;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ef4444;
+        }
+
+        .experience-item h5 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .experience-item .location-type {
+            background: #ef4444;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .experience-item p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .experience-item .timing {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) { 
+            .item { flex-direction: column !important; } 
+            .item img { width: 100%; height: 250px; } 
+            .hero-overlay h1 { font-size: 2.5rem; } 
+            .info { padding: 20px; }
+            .performance-content { width: 95%; padding: 20px; }
+            .media-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        }
+    </style>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+        const performanceGalleries = {
+            cham: {
+                name: 'Cham (Mask Dance) Experience',
+                images: [
+                    'Hemis-Festival, Ladakh.jpeg',
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg',
+                    'download (2).jpeg',
+                    'Lepcha traditional house.jpeg'
+                ],
+                experiences: [
+                    {
+                        name: 'Rumtek Monastery',
+                        type: 'Monastery Festival',
+                        description: 'Witness authentic Cham dance during Losar and other Buddhist festivals. Monks perform in traditional masks and costumes.',
+                        timing: 'Festival seasons: Feb-Mar, May-Jun',
+                        contact: 'Contact monastery office for festival dates'
+                    },
+                    {
+                        name: 'Pemayangtse Monastery',
+                        type: 'Sacred Performance',
+                        description: 'Experience Cham dance in its most traditional form. Annual festival features elaborate mask dances.',
+                        timing: 'Annual festival: February/March',
+                        contact: 'Best experienced during Chaam festival'
+                    },
+                    {
+                        name: 'Tashiding Monastery',
+                        type: 'Pilgrimage Site',
+                        description: 'Sacred Cham performances during Bumchu festival. Highly spiritual and authentic experience.',
+                        timing: 'Bumchu festival: January/February',
+                        contact: 'Join pilgrimage groups for authentic experience'
+                    },
+                    {
+                        name: 'Gangtok Cultural Programs',
+                        type: 'Cultural Center',
+                        description: 'Regular cultural shows featuring Cham dance demonstrations for tourists.',
+                        timing: 'Daily shows: 6 PM - 7 PM',
+                        contact: 'Sikkim Tourism Office: +91-3592-221634'
+                    }
+                ]
+            },
+            damphu: {
+                name: 'Damphu Dance Experience',
+                images: [
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg',
+                    'download (2).jpeg',
+                    'Hemis-Festival, Ladakh.jpeg',
+                    'Lepcha traditional house.jpeg'
+                ],
+                experiences: [
+                    {
+                        name: 'Tamang Heritage Villages',
+                        type: 'Village Experience',
+                        description: 'Stay with Tamang families and learn Damphu dance. Participate in evening cultural sessions.',
+                        timing: 'Year-round, best during festivals',
+                        contact: 'Tamang Heritage Trail: +91-9832456123'
+                    },
+                    {
+                        name: 'Gangtok MG Road Cultural Evenings',
+                        type: 'Tourist Program',
+                        description: 'Weekly Damphu dance performances with audience participation. Learn basic steps.',
+                        timing: 'Every Saturday: 7 PM - 8 PM',
+                        contact: 'Tourism Information Center'
+                    },
+                    {
+                        name: 'Namchi Cultural Center',
+                        type: 'Learning Center',
+                        description: 'Damphu dance workshops and drum-making sessions. Hands-on cultural experience.',
+                        timing: 'Workshops: Weekends 10 AM - 4 PM',
+                        contact: 'Namchi Cultural Center: +91-3595-264296'
+                    },
+                    {
+                        name: 'Ravangla Folk Festival',
+                        type: 'Annual Festival',
+                        description: 'Major Damphu dance competition and celebration. Best place to see authentic performances.',
+                        timing: 'Annual festival: October',
+                        contact: 'Ravangla Tourism Office'
+                    }
+                ]
+            },
+            lepcha: {
+                name: 'Lepcha Folk Songs Experience',
+                images: [
+                    'download (2).jpeg',
+                    'Lepcha traditional house.jpeg',
+                    'Hemis-Festival, Ladakh.jpeg',
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg'
+                ],
+                experiences: [
+                    {
+                        name: 'Dzongu Lepcha Reserve',
+                        type: 'Indigenous Experience',
+                        description: 'Authentic Lepcha folk song sessions with tribal elders. Learn about nature-based songs.',
+                        timing: 'Guided tours: 9 AM - 5 PM',
+                        contact: 'Dzongu Eco-Tourism: +91-9832234567'
+                    },
+                    {
+                        name: 'Kalimpong Lepcha Museum',
+                        type: 'Cultural Museum',
+                        description: 'Audio recordings and live performances of traditional Lepcha songs.',
+                        timing: 'Daily: 10 AM - 4 PM',
+                        contact: 'Lepcha Museum: +91-3552-255142'
+                    },
+                    {
+                        name: 'Yuksom Village Homestays',
+                        type: 'Village Immersion',
+                        description: 'Evening folk song sessions around bonfire. Learn Lepcha language through songs.',
+                        timing: 'Evening sessions: 7 PM - 9 PM',
+                        contact: 'Yuksom Homestay Network'
+                    },
+                    {
+                        name: 'Mangan Cultural Evenings',
+                        type: 'Community Program',
+                        description: 'Monthly Lepcha cultural nights with traditional songs and storytelling.',
+                        timing: 'First Saturday of month: 6 PM',
+                        contact: 'North Sikkim Cultural Association'
+                    }
+                ]
+            },
+            maruni: {
+                name: 'Maruni Dance Experience',
+                images: [
+                    'Lepcha traditional house.jpeg',
+                    'Hemis-Festival, Ladakh.jpeg',
+                    'download (2).jpeg',
+                    'Making of the Prayer Wheel - Sikkim, India.jpeg'
+                ],
+                experiences: [
+                    {
+                        name: 'Dashain Festival Celebrations',
+                        type: 'Festival Experience',
+                        description: 'Join Nepali community Dashain celebrations. Participate in Maruni dance performances.',
+                        timing: 'Dashain festival: September/October',
+                        contact: 'Nepali Cultural Association Gangtok'
+                    },
+                    {
+                        name: 'Jorethang Cultural Center',
+                        type: 'Learning Center',
+                        description: 'Maruni dance classes and costume workshops. Learn traditional choreography.',
+                        timing: 'Classes: Tuesday & Thursday 5 PM',
+                        contact: 'Jorethang Cultural Center: +91-3595-263456'
+                    },
+                    {
+                        name: 'Singtam Community Hall',
+                        type: 'Community Events',
+                        description: 'Regular Maruni dance performances during local festivals and celebrations.',
+                        timing: 'Festival seasons and weekends',
+                        contact: 'Singtam Cultural Committee'
+                    },
+                    {
+                        name: 'Tihar Festival Programs',
+                        type: 'Seasonal Festival',
+                        description: 'Special Maruni performances during Tihar. Most authentic and vibrant celebrations.',
+                        timing: 'Tihar festival: October/November',
+                        contact: 'Local Nepali community centers'
+                    }
+                ]
+            }
+        };
+
+        function showPerformanceGallery(performanceType) {
+            const modal = document.getElementById('performance-modal');
+            const data = performanceGalleries[performanceType];
+            
+            document.getElementById('performance-title').textContent = data.name;
+            
+            const mediaGrid = document.getElementById('media-grid');
+            mediaGrid.innerHTML = '';
+            data.images.forEach(image => {
+                const div = document.createElement('div');
+                div.className = 'media-item';
+                div.innerHTML = `<img src="${image}" alt="${data.name}">`;
+                mediaGrid.appendChild(div);
+            });
+            
+            const experiencesList = document.getElementById('performance-experiences');
+            experiencesList.innerHTML = '';
+            data.experiences.forEach(experience => {
+                const div = document.createElement('div');
+                div.className = 'experience-item';
+                div.innerHTML = `
+                    <div class="location-type">${experience.type}</div>
+                    <h5>${experience.name}</h5>
+                    <p>${experience.description}</p>
+                    <p class="timing">⏰ ${experience.timing}</p>
+                    <p>📞 ${experience.contact}</p>
+                `;
+                experiencesList.appendChild(div);
+            });
+            
+            modal.style.display = 'flex';
+        }
+
+        function closePerformanceGallery() {
+            document.getElementById('performance-modal').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.item').forEach(item => observer.observe(item));
+        });
+    </script>
+
+    <div id="performance-modal" class="performance-modal">
+        <div class="performance-content">
+            <button class="performance-close" onclick="closePerformanceGallery()">&times;</button>
+            <h3 id="performance-title">Performance Gallery</h3>
+            
+            <div class="video-section">
+                <div class="video-placeholder">
+                    <i class="fas fa-play-circle"></i>
+                    <h4>Performance Video</h4>
+                    <p>Experience authentic traditional performances</p>
+                </div>
+            </div>
+            
+            <div class="media-grid" id="media-grid"></div>
+            
+            <div class="experience-section">
+                <h4>Where to Experience Live Performances</h4>
+                <div id="performance-experiences"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

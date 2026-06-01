@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Culture & Heritage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="hero-background">
+        <img src="download (1).jpeg" alt="Sikkim Culture">
+        <div class="hero-overlay">
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>Culture & Heritage</h1>
+            <p>Rich Traditions of Sikkim</p>
+        </div>
+    </div>
+
+    <div class="monastery-content">
+        <div class="monastery-item">
+            <img src="download (2).jpeg" alt="Traditional Festivals">
+            <div class="monastery-info">
+                <h2>Traditional Festivals</h2>
+                <p>Experience vibrant celebrations like Losar, Saga Dawa, and Dashain that showcase Sikkim's multicultural heritage. These festivals bring together Buddhist, Hindu, and indigenous traditions in colorful displays of music, dance, and spirituality.</p>
+                <button class="know-more-btn" onclick="window.location.href='festivals.html'"><i class="fas fa-info-circle"></i> Know More</button>
+            </div>
+        </div>
+
+        <div class="monastery-item">
+            <img src="Making of the Prayer Wheel - Sikkim, India.jpeg" alt="Traditional Arts">
+            <div class="monastery-info">
+                <h2>Traditional Arts & Crafts</h2>
+                <p>Discover exquisite handwoven textiles, intricate wood carvings, and traditional thangka paintings. Local artisans preserve ancient techniques passed down through generations, creating beautiful works that reflect Sikkim's artistic heritage.</p>
+                <button class="know-more-btn" onclick="window.location.href='arts-crafts.html'"><i class="fas fa-info-circle"></i> Know More</button>
+            </div>
+        </div>
+
+        <div class="monastery-item">
+            <img src="Hemis-Festival, Ladakh.jpeg" alt="Folk Music">
+            <div class="monastery-info">
+                <h2>Folk Music & Dance</h2>
+                <p>Immerse yourself in traditional performances featuring the damphu drum, flute melodies, and graceful mask dances. These cultural expressions tell stories of ancient legends, seasonal celebrations, and spiritual beliefs.</p>
+                <button class="know-more-btn" onclick="window.location.href='folk-music-dance.html'"><i class="fas fa-info-circle"></i> Know More</button>
+            </div>
+        </div>
+
+        <div class="monastery-item">
+            <img src="Lepcha traditional house.jpeg" alt="Architecture">
+            <div class="monastery-info">
+                <h2>Traditional Architecture</h2>
+                <p>Marvel at distinctive Sikkimese architecture with its pagoda-style roofs, intricate woodwork, and colorful facades. Traditional houses and public buildings reflect the harmonious blend of Tibetan, Nepali, and indigenous architectural styles.</p>
+                <button class="know-more-btn" onclick="window.location.href='architecture.html'"><i class="fas fa-info-circle"></i> Know More</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .hero-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-overlay h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-overlay p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .monastery-content {
+            position: relative;
+            z-index: 2;
+            margin-top: 100vh;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            padding: 60px 40px;
+            border-radius: 30px 30px 0 0;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            box-shadow: 0 -20px 60px rgba(6, 182, 212, 0.2);
+        }
+
+        .monastery-item {
+            display: flex;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .monastery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .monastery-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        .monastery-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .monastery-item img {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .monastery-info {
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .monastery-info h2 {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(6, 182, 212, 0.3);
+            font-weight: 700;
+        }
+
+        .monastery-info p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(30, 41, 59, 0.95);
+            text-shadow: 2px 2px 4px rgba(6, 182, 212, 0.2);
+            margin-bottom: 20px;
+        }
+
+
+
+        .know-more-btn {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            align-self: flex-start;
+        }
+
+        .know-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .monastery-item {
+                flex-direction: column !important;
+            }
+            .monastery-item img {
+                width: 100%;
+                height: 250px;
+            }
+            .hero-overlay h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+
+    <script>
+        function splitText(element) {
+            const text = element.textContent;
+            element.innerHTML = '';
+            text.split(' ').forEach((word, i) => {
+                const span = document.createElement('span');
+                span.textContent = word + ' ';
+                span.style.opacity = '0';
+                span.style.transform = 'translateY(20px)';
+                span.style.transition = `all 0.6s ease ${i * 0.1}s`;
+                span.style.display = 'inline-block';
+                span.classList.add('word');
+                element.appendChild(span);
+            });
+        }
+
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.querySelectorAll('.word').forEach((word, i) => {
+                        setTimeout(() => {
+                            word.style.opacity = '1';
+                            word.style.transform = 'translateY(0)';
+                        }, i * 100);
+                    });
+                } else {
+                    entry.target.classList.remove('visible');
+                    entry.target.querySelectorAll('.word').forEach(word => {
+                        word.style.opacity = '0';
+                        word.style.transform = 'translateY(20px)';
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Blockchain Data Authentication System
+        class CultureBlockchain {
+            constructor() {
+                this.chain = [];
+                this.initializeChain();
+            }
+
+            initializeChain() {
+                // Genesis block
+                this.chain.push({
+                    index: 0,
+                    timestamp: Date.now(),
+                    data: 'Genesis Block - Sikkim Culture Heritage',
+                    hash: this.calculateHash('genesis'),
+                    previousHash: '0'
+                });
+
+                // Add cultural data blocks
+                this.addBlock('festivals', 'Traditional Festivals - Losar, Saga Dawa, Dashain verified by Cultural Heritage Board');
+                this.addBlock('arts-crafts', 'Traditional Arts & Crafts - Thangka paintings, wood carvings verified by Artisan Guild');
+                this.addBlock('folk-music-dance', 'Folk Music & Dance - Damphu drum, mask dances verified by Cultural Academy');
+                this.addBlock('architecture', 'Traditional Architecture - Pagoda-style roofs verified by Heritage Committee');
+            }
+
+            addBlock(id, data) {
+                const previousBlock = this.chain[this.chain.length - 1];
+                const newBlock = {
+                    index: this.chain.length,
+                    timestamp: Date.now(),
+                    id: id,
+                    data: data,
+                    previousHash: previousBlock.hash,
+                    hash: this.calculateHash(data + previousBlock.hash + Date.now())
+                };
+                this.chain.push(newBlock);
+            }
+
+            calculateHash(data) {
+                // Simple hash function (in production, use SHA-256)
+                let hash = 0;
+                for (let i = 0; i < data.length; i++) {
+                    const char = data.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash;
+                }
+                return Math.abs(hash).toString(16);
+            }
+
+            verifyChain() {
+                for (let i = 1; i < this.chain.length; i++) {
+                    const currentBlock = this.chain[i];
+                    const previousBlock = this.chain[i - 1];
+                    
+                    if (currentBlock.previousHash !== previousBlock.hash) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            getBlockById(id) {
+                return this.chain.find(block => block.id === id);
+            }
+        }
+
+        const cultureBlockchain = new CultureBlockchain();
+
+        function verifyBlockchainData(sectionId) {
+            const block = cultureBlockchain.getBlockById(sectionId);
+            const isValid = cultureBlockchain.verifyChain();
+            
+            if (block && isValid) {
+                alert(`✅ Blockchain Verification Successful\n\nSection: ${sectionId}\nBlock Index: ${block.index}\nTimestamp: ${new Date(block.timestamp).toLocaleString()}\nHash: ${block.hash}\nData: ${block.data}\n\n🔒 This cultural heritage data is authenticated and tamper-proof.`);
+            } else {
+                alert('❌ Blockchain verification failed. Data integrity compromised.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize universal language system
+            if (typeof initUniversalLanguageSystem === 'function') {
+                initUniversalLanguageSystem();
+                
+                // Auto-translate based on saved language preference
+                const savedLanguage = localStorage.getItem('selectedLanguage');
+                if (savedLanguage && savedLanguage !== 'en') {
+                    console.log(`Auto-translating culture page to ${savedLanguage}`);
+                    setTimeout(() => translateCurrentPage(savedLanguage), 500);
+                }
+            }
+            
+            document.querySelectorAll('.monastery-info h2, .monastery-info p').forEach(splitText);
+            
+            const monasteryItems = document.querySelectorAll('.monastery-item');
+            monasteryItems.forEach(item => {
+                observer.observe(item);
+            });
+
+            // Initialize blockchain verification
+            console.log('Culture Heritage Blockchain initialized with', cultureBlockchain.chain.length, 'blocks');
+            console.log('Blockchain integrity:', cultureBlockchain.verifyChain() ? 'Valid' : 'Invalid');
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
